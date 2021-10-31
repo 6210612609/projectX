@@ -1,0 +1,10 @@
+
+Update your Student profile <br>
+
+<form method="post" novalidate>
+        {% csrf_token %}
+        {{u_form }}
+        {{p_form}}
+    <button type="submit" >Save changes</button>
+    <a href="{% url 's_home' %}" >Cancel</a>
+</form>

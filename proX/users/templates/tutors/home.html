@@ -1,0 +1,19 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+<h1> Tutor Home </h1>
+<h3>{{request.user}} <br></h3>
+{% endblock %}
+
+
+{% block body %}
+<a href="{% url 't_profile' %}">My Profile</a><br>
+<a href="{% url 'logout' %}">Logout</a><br>
+<a href="{% url 'make_course' %}">Make Course</a><br>
+
+{% for course in owners %}
+    
+    <li><a href="{% url 'course_update' course.pk %}">{{ course.name }}</a> {{ course.detail }} {{ course.amount }}</li>
+{% endfor %}
+
+{% endblock %}

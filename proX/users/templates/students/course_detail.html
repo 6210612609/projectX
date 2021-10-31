@@ -1,0 +1,20 @@
+course name : {{ object.name }}<br>
+course detail : {{ object.detail }}<br>
+course amount : {{ object.amount }}<br>
+course price : {{ object.price }} Baht/Hr.<br>
+to this course owners <br><a href="{% url 'tutor_detail' object.owner.pk %}" target="_blank">{{ object.owner }}</a><br>
+                        
+    {% if request.user not in students %}
+            {% if object.count < object.amount %}
+                <a href="{% url 'book_course' object.id %}">Book This Course</a>
+                <p>Click register button to register this course.</p><br>   
+            {% else %}
+                <p>can't register because course is full.</p>
+            {% endif %}
+          
+    {% else %}
+
+    <p>you've already registered.<p>   
+    {% endif %}
+   
+   <a href="{% url 's_home' %}">Home</a>

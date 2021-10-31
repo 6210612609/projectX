@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'courses',
-    'main',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -130,5 +129,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/styles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import django_heroku
-django_heroku.settings(locals())
+AUTH_USER_MODEL = 'users.User'

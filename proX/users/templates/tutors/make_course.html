@@ -1,0 +1,15 @@
+
+
+
+{% block title %}
+<h1> Make course </h1>
+{% endblock %}
+
+{% block body %}
+<form action="{% url 'make_course' %}" method="post" novalidate>
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" >Save</button>
+        <a href="{% url 't_home' %}" >Nevermind</a>
+</form>
+{% endblock %}

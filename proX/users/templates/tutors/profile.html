@@ -1,0 +1,9 @@
+Profile<br>
+Full Name : {{tutor.user}}<br>
+NickName : {{tutor.user.nick_Name}}<br>
+Age : {{tutor.user.age}}<br>
+Profile: {{ tutor.user.profile }}<br>
+
+<a href="{% url 't_profile_update' %}">Update My Profile</a><br>
+
+<a href="{% url 't_home' %}">Back</a>

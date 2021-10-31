@@ -1,0 +1,10 @@
+{{ owners.name }}
+
+<form method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+    <button type="submit" >Save changes</button>
+    <a href="{% url 't_home' %}" >Cancel</a>
+    <a href="{% url 'course_delete' owners.pk %}" >Delete</a>
+</form>
+

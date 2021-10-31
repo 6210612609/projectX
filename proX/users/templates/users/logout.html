@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <title>Only Tutor</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+</head>
+    <body>
+       <form action="{% url 'logout' %}" method = "POST" class="form-group">
+        {%csrf_token%}
+        {{form}}
+        <button type= "submit">Logout</button>
+        </form>
+    </body>

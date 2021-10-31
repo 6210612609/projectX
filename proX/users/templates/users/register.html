@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <title>Only Tutor</title>
+<link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+</head>
+<a type="button" class="btn btn-block" href="{% url 'student_register' %}">I am a Student</a>
+<a type="button" class="btn btn-block" href="{% url 'tutor_register' %}">I am an Tutor</a>
