@@ -7,7 +7,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from ..form import StudentSignUpForm, TutorSignUpForm, UpdateStudentForm, UpdateStudentForm
-from ..models import User, Course, Student, Tutor
+from ..models import User, Course, Student, Tutor, Review
 
 
 
@@ -40,13 +40,30 @@ def CourseDetailView(request, course_id):
 
     })
 
-
-class TutorDetailView(DetailView):
-    model = Tutor
-    template_name = '../templates/students/tutor_detail.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+def TutorDetailView(request, tutor_id):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please Login")
+        return HttpResponseRedirect(reverse("login"))
+    tutor = get_object_or_404(Tutor, pk=tutor_id)
+    review = []
+    for r in Review.objects.all():
+        if r.tutor.user.id == tutor_id:
+            review.append(r) 
+    num = 0
+    sumstar = 0
+    for s in review:
+        sumstar += s.star
+        num += 1
+    if (num == 0):
+        avgstar = "No review yet"
+    else:
+        avgstar = sumstar/num
+        avgstar = "{:.1f}".format(avgstar)
+    return render(request, "../templates/students/tutor_detail.html",{
+        "object": tutor,
+        "reviews": review,
+        "avgstar": avgstar
+    })
 
 def BookCourse(request, course_id ):
     if not request.user.is_authenticated:
@@ -70,16 +87,12 @@ def CourseCancel(request, course_id):
         course.save()
     return HttpResponseRedirect(reverse("s_profile"))    
     
-    
-
-    
 def ProfileView(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please Login")
+        return HttpResponseRedirect(reverse("login"))
     courselist = []
     profile = request
-    for p in Student.objects.all():
-        if request.user.id == p.user.id:
-            profile = p
-    
     for c in Course.objects.all():
         if request.user in c.students.all():
             courselist.append(c) 
@@ -98,3 +111,17 @@ def StudentUpdate(request):
         user_form = UpdateStudentForm(instance=request.user)
 
     return render(request, '../templates/students/profile_update.html', {'u_form': user_form})
+    
+
+def add_reviews(request, tutor_id):
+    if request.method == "POST":
+        tutor = get_object_or_404(Tutor, pk=tutor_id)
+        student = get_object_or_404(User, pk=request.user.id)
+        comment = request.POST.get("comment")
+        star = request.POST.get("star")
+            
+        review = Review(tutor = tutor,student=student, comment=comment, star=star)
+        review.save()
+        messages.success(request, "Thank You for Reviewing ^^")
+    return HttpResponseRedirect(reverse("tutor_detail", args=(tutor_id,)))
+    

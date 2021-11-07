@@ -10,12 +10,7 @@
         <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a> {{ course.detail }} {{ course.owner }}<br>
     {% endfor %}
     
-    <p>-----------------------------------</p>
-    <h2>Courses Old</h2>
-    {% for course in courses %}
-        <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a> {{ course.detail }} {{ course.owner }}<br>
-    {% endfor %}
-    <br>
+    
 {% endblock %}
 {% block body %}
 <a href="{% url 'logout' %}">Logout</a>

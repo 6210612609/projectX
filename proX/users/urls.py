@@ -4,6 +4,11 @@ from .views  import main, students, tutors
 urlpatterns=[
 
      path('',main.index, name='index'),
+     path('admins/', main.TutorListView, name='a_home'),
+     path('admins/tutor/<int:tutor_id>', main.CommentListView, name='list_comment'),
+     path('admins/tutor/<int:tutor_id>/<int:review_id>/delete', main.ReviewDelete, name='delete_review'),
+     
+     
 
      path('students/', students.CourseListView, name='s_home'),
      path('students/profile/', students.ProfileView, name='s_profile'),
@@ -11,9 +16,10 @@ urlpatterns=[
      path('students/course/<int:course_id>', students.CourseDetailView, name='course_detail'),
      path('students/course/<int:course_id>/cancel', students.CourseCancel, name='course_cancel'),
      path('students/course/<int:course_id>/book', students.BookCourse, name='book_course'),
-     path('students/course/tutor/<int:pk>', students.TutorDetailView.as_view(), name='tutor_detail'),
-
-
+     path('students/course/tutor/<int:tutor_id>', students.TutorDetailView, name='tutor_detail'),
+     
+     
+     path('students/course/tutor/<int:tutor_id>/comment', students.add_reviews, name='tutor_comment'),
 
 
      path('tutors/', tutors.CourseListView.as_view(), name='t_home'),
@@ -23,8 +29,7 @@ urlpatterns=[
      path('tutors/course/<int:pk>/', tutors.CourseUpdateView.as_view(), name='course_update'),
      path('tutors/course/<int:pk>/delete', tutors.CourseDeleteView.as_view(), name='course_delete'),
 
-
-
+    
 
 
 

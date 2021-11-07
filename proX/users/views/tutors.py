@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from ..models import User, Course, Tutor
+from ..models import User, Course, Tutor, Review
 from ..form import StudentSignUpForm, TutorSignUpForm, UpdateTutorForm
 
 
@@ -27,12 +27,12 @@ class CourseListView(ListView):
     ordering = ('name',)
     context_object_name = 'owners'
     template_name = '../templates/tutors/home.html'
-    
+
     def get_queryset(self):
         queryset = self.request.user.owners\
             .select_related('owner')
         return queryset
-    
+
 
 
 class CourseCreateView(CreateView):
@@ -55,7 +55,7 @@ class CourseUpdateView(UpdateView):
     template_name = '../templates/tutors/course_update_form.html'
 
     def get_queryset(self):
-        
+
         return self.request.user.owners.all()
 
     def get_success_url(self):
@@ -77,15 +77,33 @@ class CourseDeleteView(DeleteView):
         return self.request.user.owners.all()
 
 def ProfileView(request):
-    
-    for p in Tutor.objects.all():
-        if request.user.id == p.user.id:
-            profile = p
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please Login")
+        return HttpResponseRedirect(reverse("login"))
+    profile = request
+    review = []
+    for r in Review.objects.all():
+        if r.tutor.user.id == request.user.id:
+            review.append(r)
+    num = 0
+    sumstar = 0
+    avgstar = 0
+    for s in review:
+        sumstar += s.star
+        num += 1
+    if (num == 0):
+        avgstar = "No review yet"
+    else:
+        avgstar = sumstar/num
+        avgstar = "{:.1f}".format(avgstar)
+    return render(request, "../templates/tutors/profile.html",  { 
+        "tutor" : profile, 
+        "reviews" : review,
+        "avgstar" : avgstar 
+    })
 
-    return render(request, "../templates/tutors/profile.html", { "tutor" : profile })
-    
-    
-    
+
+
 def TutorUpdate(request):
     if request.method == 'POST':
         user_form = UpdateTutorForm(request.POST, instance = request.user)
@@ -97,4 +115,4 @@ def TutorUpdate(request):
     else:
         user_form = UpdateTutorForm(instance=request.user)
 
-    return render(request, '../templates/tutors/profile_update.html', {'form': user_form})    
+    return render(request, '../templates/tutors/profile_update.html', {'form': user_form})
