@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+
+<title>Demo Registration</title>
+</head>
+<h2>Tutor Register</h2><br>
+<form action="{% url 'tutor_register' %}" method = "POST" class="form-group">
+    {%csrf_token%}
+    {{form}}
+    <button type= "submit">Register</button>
+</form>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Only Tutor</title>
+        <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    </head>
+    <body>
+        <h2>Student Register</h2><br>
+        <form action="{% url 'student_register' %}" method = "POST" class="form-group">
+        {%csrf_token%}
+        {{form}}
+        <button type= "submit">Register</button>
+        </form>
+    </body>
+</html>

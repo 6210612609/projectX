@@ -1,0 +1,9 @@
+
+Update your Tutor profile <br>
+
+<form method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+    <button type="submit" >Save changes</button>
+    <a href="{% url 't_home' %}" >Cancel</a>
+</form>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Only Tutor</title>
+        <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    </head>
+    <body>
+       <form action="{% url 'login' %}" method = "POST" class="form-group">
+            {%csrf_token%}
+            {{form}}
+            <button type= "submit">Login</button>
+        </form>
+    </body>
+    <p>Don't have an account? Create One <a href="{% url 'register' %}">Here</p>
+<html>

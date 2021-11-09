@@ -1,0 +1,16 @@
+Profile<br>
+Full Name : {{tutor.user}}<br>
+NickName : {{tutor.user.nick_Name}}<br>
+Age : {{tutor.user.age}}<br>
+Profile: {{ tutor.user.profile }}<br>
+Average Star : {{avgstar}}<br>
+
+<a href="{% url 't_profile_update' %}">Update My Profile</a><br>
+
+<a href="{% url 't_home' %}">Back</a><br>
+
+My Review<<br>
+{% for review in reviews %}
+        {{review.student.first_name}} {{review.student.last_name}}<br>
+        {{review.comment}} {{review.star}}/5<br>
+{% endfor %}
