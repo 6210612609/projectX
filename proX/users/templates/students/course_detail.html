@@ -1,3 +1,9 @@
+{% extends "main/layout.html" %}
+{% block profile %}
+<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+
+{% block content %}
 course name : {{ object.name }}<br>
 course detail : {{ object.detail }}<br>
 course amount : {{ object.amount }}<br>
@@ -18,3 +24,4 @@ to this course owners <br><a href="{% url 'tutor_detail' object.owner.pk %}" tar
     {% endif %}
    
    <a href="{% url 's_home' %}">Home</a>
+{% endblock %}
