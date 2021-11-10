@@ -8,10 +8,10 @@
 <h1> Student Home </h1>
 {% endblock %}
 {% block content %}
-    <h2 style="margin-left:65em;"><b>Welcome, {{request.user.username}}</b></h2>
+    <h2 style="color:black;" ><b>Welcome, {{request.user.username}}</b></h2>
     <ul>
-        <li style="color:white">Username: {{ request.user.username }}</li>
-        <li style="color:white">Name: {{ request.user.nick_Name }}</li>
+        <li style="color:black">Username: {{ request.user.username }}</li>
+        <li style="color:black">Name: {{ request.user.nick_Name }}</li>
     </ul>
     <h3>Courses which not apply</h3>
     {% for course in courselist %}

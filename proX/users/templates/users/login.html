@@ -1,16 +1,40 @@
-<!DOCTYPE html>
-{% load static %}
-<html>
-    <head>
-        <title>Only Tutor</title>
-        <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
-    </head>
-    <body>
-       <form action="{% url 'login' %}" method = "POST" class="form-group">
-            {%csrf_token%}
-            {{form}}
-            <button type= "submit">Login</button>
-        </form>
-    </body>
-    <p>Don't have an account? Create One <a href="{% url 'register' %}">Here</p>
-<html>
+{% extends "users/templatesignup.html" %}
+<style>
+   
+    div.l {
+        text-align: left;
+    }
+    div.a {
+        text-align: center;
+    }
+  
+</style>
+
+    
+{% block body %}
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="a">
+<img style="background: lightskyblue;" >    
+<img style="width:250px;height:250px;" src="static/images/kainao.jpg" alt="ninja">
+<h1> STUDENT </h1>
+<form action="{% url 'login' %}" method = "POST" class="form-group">
+    {%csrf_token%}
+    <div style="margin-right: 10%">
+    <h5 class="w3-padding-1">Username:</h5>
+    </div>
+    <input type="text" id="form.username" name="username"><br>
+    <div style="margin-right: 10%">
+    <h5 class="w3-padding-1">Password:</h5>
+    </div>
+    <input type="password" id="form.password" name="password"><br>
+    <br>
+    <input type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue" value="Sign in">
+  </form>
+   <p>Don't have an account? Create One <a href="{% url 'register' %}">Here</p>
+</div>
+</body>
+{% endblock %}
