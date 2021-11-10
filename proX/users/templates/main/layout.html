@@ -1,33 +1,67 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
-
-<head>
+<html lang="en">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+div.c {
+      text-align: right;
+    }
+    
 </style>
-</head>
 <body>
+  
 
-<div class="topnav">
-  <a class="active" href= "/" >Home</a>
-  <a href="/about">About</a>
-</div>
+<!-- Navbar --> 
+  
+  <div class="w3-bar w3-blue w3-card w3-left-align w3-large" style="height:8.5em;">
+    <a href="/home" style="text-decoration:none ;float: left; color: white;"><label class="w3-margin w3-jumbo"> Only Tutor</label></a>
+    <a href="/home"> <img style="width:90px;height:80px ;float: left; margin-top: 2em;" src="static/images/only.png" alt="ninja"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-25em;">  &#x1F3E0; Home</a>
+    <a href="/list" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-17.5em;">&#128203; List</a>
+    {% block profile %}
+    {% endblock %}
+    <a href="/about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-4.5em;">&#128101;About</a>
 
-<div style="padding-left:16px">
-{% block title %}{% endblock %}
-{% block content %}{% endblock %}
-{% block body %}{% endblock %}
+    {% if  request.user.is_authenticated %}
+      <h3 style="margin-left:65em;"><b>Welcome, {{request.user.username}}</b></h3>
+    {% else %}
+    <div class="c">
+      <div style="margin-top:-1em;" >
+      <a href="/signin" style="margin-right:-2em;"><input type="button"  value="sign in"></a>
+      <a href="/signup"><input type="button"  value="sign up"></a></div>
+    </div>
+    {% endif %}
+    <ul>
+        <li style="color:white">Username: {{ request.user.username }}</li>
+        <li style="color:white">Password: {{ request.user.password }}</li>
+    </ul>
+  </div>
+  
+  
+  
+  
+  <div style="margin-bottom: 5em;"></div>
+  
+  {% block content %}
+  {% endblock %}
 
-</div>
-
-
+  {% block body %}
+  {% endblock %}
 
 </body>
 </html>

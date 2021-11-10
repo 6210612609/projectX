@@ -1,17 +1,25 @@
 {% extends "main/layout.html" %}
 
+{% block profile %}
+<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+
 {% block title %}
 <h1> Student Home </h1>
-<a href="{% url 's_profile' %}">Profile</a>
 {% endblock %}
 {% block content %}
-    <h2>Courses which not apply</h2>
+    <h2 style="margin-left:65em;"><b>Welcome, {{request.user.username}}</b></h2>
+    <ul>
+        <li style="color:white">Username: {{ request.user.username }}</li>
+        <li style="color:white">Name: {{ request.user.nick_Name }}</li>
+    </ul>
+    <h3>Courses which not apply</h3>
     {% for course in courselist %}
         <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a> {{ course.detail }} {{ course.owner }}<br>
     {% endfor %}
     
-    
 {% endblock %}
 {% block body %}
+
 <a href="{% url 'logout' %}">Logout</a>
 {% endblock %}
