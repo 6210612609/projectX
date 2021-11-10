@@ -1,9 +1,26 @@
-
-Update your Tutor profile <br>
+{% extends "main/layout.html" %}
+{% block profile %}
+<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+{% block content %}
 
 <form method="post" novalidate>
+    <h1>Update your Tutor profile</h1> <br>
         {% csrf_token %}
-        {{ form }}
-    <button type="submit" >Save changes</button>
-    <a href="{% url 't_home' %}" >Cancel</a>
+        <h2>First name</h2><br>
+        {{form.first_name }}<br>
+        <h2>Last name</h2><br>
+        {{form.last_name }}<br>
+        <h2>Nick name</h2><br>
+        {{form.nick_Name }}<br>
+        <h2>age</h2><br>
+        {{form.age }}<br>
+        <h2>Profile</h2><br>
+        {{form.profile}}<br>
+        
+    <div style="margin-top:3em">
+    <button type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue">Save changes</button>
+    <a href="{% url 't_home' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue" >Cancel</a>
+    </div> 
 </form>
+{% endblock %}
