@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from ..models import User, Course, Tutor, Review
+from ..models import User, Course, Tutor, Review, Student
 from ..form import StudentSignUpForm, TutorSignUpForm, UpdateTutorForm
 
 
@@ -59,7 +59,7 @@ class CourseUpdateView(UpdateView):
         return self.request.user.owners.all()
 
     def get_success_url(self):
-        return reverse('course_update', kwargs={'pk': self.object.pk})
+        return reverse('t_course_detail', kwargs={'course_id': self.object.pk})
 
 
 class CourseDeleteView(DeleteView):
@@ -116,3 +116,21 @@ def TutorUpdate(request):
         user_form = UpdateTutorForm(instance=request.user)
 
     return render(request, '../templates/tutors/profile_update.html', {'form': user_form})
+
+def CourseDetailView(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    return render(request, "../templates/tutors/course_detail.html",{
+        "object": course,
+        "students": course.students.all(),
+
+    })
+
+def studentDetailView(request, student_id):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please Login")
+        return HttpResponseRedirect(reverse("login"))
+    student = get_object_or_404(Student, pk=student_id)
+    
+    return render(request, "../templates/tutors/student_detail.html",{
+        "student": student,
+    })

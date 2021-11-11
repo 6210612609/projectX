@@ -1,0 +1,12 @@
+{% extends "main/layout.html" %}
+{% block profile %}
+<a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+
+{% block content %}
+Full Name : {{student.user.first_name}} {{student.last_name}}<br>
+NickName : {{student.user.nick_Name}}<br>
+Age : {{student.user.age}}<br>
+Degree : {{student.user.degree}}<br>
+
+{% endblock %}
