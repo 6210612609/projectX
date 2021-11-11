@@ -33,6 +33,11 @@ class Course(models.Model):
     price = models.IntegerField(default = 300)
     students = models.ManyToManyField(User, blank=True, related_name= "courses")
 
+    def search(self, search):
+        if search.lower() in self.name.lower():
+            return True
+        return False
+
 class Review(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete = models.CASCADE)
     student = models.ForeignKey(User, on_delete = models.CASCADE)

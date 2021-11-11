@@ -13,7 +13,17 @@
         <li style="color:black">Username: {{ request.user.username }}</li>
         <li style="color:black">Name: {{ request.user.nick_Name }}</li>
     </ul>
-    <h3>Courses which not apply</h3>
+    <form action="{% url 's_home' %}" method = "POST" >
+        {%csrf_token%}
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    {%if check_search == True %}
+        <h3>Search result for : {{ search }}</h3>
+    {%else%}
+        <h3>Courses which not apply</h3>
+    {%endif%}
     {% for course in courselist %}
         <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a> {{ course.detail }} {{ course.owner }}<br>
     {% endfor %}
