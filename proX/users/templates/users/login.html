@@ -8,6 +8,7 @@
     div.a {
         text-align: center;
     }
+   
   
 </style>
 
@@ -31,11 +32,13 @@
     <div style="margin-right: 10%">
     <h5 class="w3-padding-1">Password:</h5>
     </div>
-    <input type="password" id="form.password" name="password"><br>
+    
+    <input type="text" id="form.password" name="password"><br>
+    
     <br>
     <input type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue" value="Sign in">
   </form>
-   <p>Don't have an account? Create One <a href="{% url 'register' %}">Here</p>
+   <li>Don't have an account? Create One <a href="{% url 'register' %}" style="color: blue;">Here</li>
 </div>
 </body>
 {% endblock %}

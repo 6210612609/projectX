@@ -1,18 +1,68 @@
 {% extends "users/templatesignup.html" %}
+
+
 {% load static %}
-
 {% block body %}
-<head>
+    <head>
+        <title>Tutor Registration</title>
+        <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+       
+    </head>
 
-<title>Demo Registration</title>
-<link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
-</head>
 
-<h2>Tutor Register</h2><br>
 {% load crispy_forms_tags %}
-<form action="{% url 'tutor_register' %}" method = "POST" class="form-group">
-    {%csrf_token%}
-    {{form|crispy}}
-    <button type= "submit">Register</button>
-</form>
+    <div style="text-align: center;">
+    <body>
+        <h2 style="margin: 10px 8px 10px 8px;font-size: 55px;color: #5fbae9;" >Tutor Register</h2><br>
+        <form action="{% url 'student_register' %}" method = "POST" class="form-group">
+        {%csrf_token%}
+            <input type="text" name="username" style="margin:0px;height: 50px;width: 415.5px;padding: 15px 15px;" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" placeholder="Username" class="textinput textInput form-control" required="" id="id_username">
+            <br><br>
+            <input type="password" name="password1" placeholder="Password"
+            style="background-color: #f6f6f6;
+            border: none;
+            color: #000000;
+            padding: 15px 15px;
+            text-align: left;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            width: 415.5px;
+            height: 50px;
+            border: 2px solid #f6f6f6;
+            border-radius: 5px 5px 5px 5px;" 
+            autocomplete="new-password" class="textinput textInput form-control" required="" id="id_password1">
+            <br><br>
+            
+            <input type="password" name="password2" placeholder="Confirm Password" 
+            style="background-color: #f6f6f6;
+            border: none;
+            color: #0d0d0d;
+            padding: 15px 15px;
+            text-align: left;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            width: 415.5px;
+            height: 50px;
+            border: 2px solid #f6f6f6;
+            border-radius: 5px 5px 5px 5px;" 
+            
+            autocomplete="new-password" class="textinput textInput form-control" required="" id="id_password2" >
+            <br><br>
+            <input type="text" name="first_name" style="margin: 0px;height: 50px;width: 206px;padding: 15px 15px;" placeholder="First Name"  class="textinput textInput form-control" required="" id="id_first_name">
+            
+            <input type="text" name="last_name" style="margin: 0px;height: 50px;width: 206px;padding: 15px 15px;" placeholder="Last Name"  class="textinput textInput form-control" required="" id="id_last_name">
+            <br><br>
+            <input type="text" name="nick_Name" style="margin: 0px;height: 50px;width: 115px;padding: 15px 15px;" placeholder="Nickname" class="textinput textInput form-control" required="" id="id_nick_Name">
+            
+            <input type="text" name="age" style="margin: 0px;height: 50px;width: 68px;padding: 15px 15px;" placeholder="Age" class="textinput textInput form-control" required="" id="id_age">
+            
+            <input type="text" name="profile" style="margin: 0px;height: 50px;width: 225px;padding: 15px 15px;" placeholder="Profile" class="textinput textInput form-control" required="" id="id_profile">
+            <br><br>
+            <button type= "submit" style="border-radius: 5px 5px 5px 5px;"class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green w3-blue">Register</button>
+        </form>
+        <br>
+    </body>
+
 {% endblock %}

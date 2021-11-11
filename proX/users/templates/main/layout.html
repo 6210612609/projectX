@@ -26,18 +26,18 @@ div.c {
   
   <div class="w3-bar w3-blue w3-card w3-left-align w3-large" style="height:8.5em;">
     <a href="{% url 'index' %}" style="text-decoration:none ;float: left; color: white;"><label class="w3-margin w3-jumbo"> Only Tutor</label></a>
-    <a href="{% url 'index' %}"> <img style="width:90px;height:80px ;float: left; margin-top: 2em;" src="static/images/only.png" alt="ninja"></a>
+    <a href="{% url 'index' %}"> <img style="width:90px;height:80px ;float: left; margin-top: 2em;" src="{% static 'images/only.png' %}" alt="ninja"></a>
     <br>
     <br>
     <br>
     <br>
     <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-25em;">  &#x1F3E0; Home</a>
     <a href="/list" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-17.5em;">&#128203; List</a>
-    {% if request.user.is_authenticated%}
+    {% if request.user.is_authenticated %}
       {% block profile %}
       {% endblock %}
     {%else%}
-      <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a> 
+      <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a> 
     {%endif%}
     
     <a href="/about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-4.5em;">&#128101;About</a>
