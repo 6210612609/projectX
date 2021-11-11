@@ -1,25 +1,64 @@
 {% extends "main/layout.html" %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 {% block profile %}
 <a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
 
 {% block title %}
-<h1> Student Home </h1>
+
 {% endblock %}
 {% block content %}
-    <h2 style="color:black;" ><b>Welcome, {{request.user.username}}</b></h2>
+    <br>
+    <h1 style="color:black;margin-left:1em; " ><b>Welcome, {{request.user.username}}</b></h1>
+    <br>
+    <h3 style="margin-left:2em;"> Student Home </h3>
     <ul>
-        <li style="color:black">Username: {{ request.user.username }}</li>
-        <li style="color:black">Name: {{ request.user.nick_Name }}</li>
+        <li style="color:black;margin-left:3.5em;font-size:20px;">Username: {{ request.user.username }}</li>
+        <li style="color:black;margin-left:3.5em;font-size:20px;">Name: {{ request.user.nick_Name }}</li>
     </ul>
-    <h3>Courses which not apply</h3>
-    {% for course in courselist %}
-        <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a> {{ course.detail }} {{ course.owner }}<br>
-    {% endfor %}
+    <br>
+    <h3 style="color:black;margin-left:2em;">Courses which not apply</h3>
+    <br>
     
+    <table style="margin-left:4em; font-size:18px; ">
+        <tr>
+            <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
+            <th style="background-color:#dddddd;" width=180px;>Course Name</th>
+            <th style="background-color:#dddddd;" width=200px;>Course Detail</th>
+            <th style="background-color:#dddddd;" width=180px;>Course Owner</th>
+        </tr>
+           
+            {% for course in courselist %}
+            <tr>
+                <td style="text-align:center;">{{course.id}}</td>
+                <td><a style="text-decoration:none;" href="{% url 'course_detail' course.id %}">{{course.name}}</a></td>
+                <td>{{course.detail}}</td>
+                <td>{{course.owner}}</td>
+            </tr>
+            
+            
+            {% endfor %}
+    </table>
+
 {% endblock %}
 {% block body %}
-
-<a href="{% url 'logout' %}">Logout</a>
+<br>
+<br>
+<a style="margin-left:3em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red w3-blue" href="{% url 'logout' %}">Logout</a>
 {% endblock %}
