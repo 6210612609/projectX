@@ -1,4 +1,5 @@
 {% extends "users/templatesignup.html" %}
+{% load static %}
 <style>
    
     div.l {
@@ -19,7 +20,7 @@
     <br>
 <div class="a">
 <img style="background: lightskyblue;" >    
-<img style="width:250px;height:250px;" src="static/images/kainao.jpg" alt="ninja">
+<img style="width:250px;height:250px;" src="{% static 'images/ninja.jpg' %}">
 <h1> STUDENT </h1>
 <form action="{% url 'login' %}" method = "POST" class="form-group">
     {%csrf_token%}
