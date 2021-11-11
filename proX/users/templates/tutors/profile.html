@@ -1,3 +1,5 @@
+
+
 {% extends "main/layout.html" %}
 
 {% block profile %}
@@ -6,6 +8,7 @@
 
 {% block content %}
 Profile<br>
+
 Full Name : {{tutor.user}}<br>
 NickName : {{tutor.user.nick_Name}}<br>
 Age : {{tutor.user.age}}<br>
@@ -16,7 +19,7 @@ Average Star : {{avgstar}}<br>
 
 <a href="{% url 't_home' %}">Back</a><br>
 
-My Review<<br>
+My Review<br>
 {% for review in reviews %}
         {{review.student.first_name}} {{review.student.last_name}}<br>
         {{review.comment}} {{review.star}}/5<br>
