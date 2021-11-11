@@ -16,52 +16,21 @@ class UserViewTestCase(TestCase):
         User.objects.create(username='student1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_student = True)
         User.objects.create(username='tutor1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_tutor = True)
         Course.objects.create(owner = User.objects.get(username='tutor1'), name = 'course1', detail = 'detail1')
+    
+
+    #logout view
+    def test_logout_view(self):
+        c = Client()
+        responses = c.get(reverse('logout'))
+        self.assertEqual(responses.status_code, 302)
         
-    def test_student_index_view_with_authentication(self):
+    #Test Login
+    def test_login_view(self):
         c = Client()
-        user = User.objects.get(username='student1')
-        c1 = Course.objects.first()
-        c1.save()
-        c.force_login(user)
-        response1 = c.get(reverse('course_detail', args=(c1.id,)))
-        response2 = c.get(reverse('s_home'))
-        self.assertEqual(response2.status_code, 200)
-
-    def test_student_profile(self):
-        c = Client()
-        user = User.objects.get(username='student1')
-        c1 = Course.objects.first()
-        c1.save()
-        c.force_login(user)
-        response1 = c.get(reverse('course_detail', args=(c1.id,)))
-        response = c.get(reverse('s_profile'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_course_detail(self):
-        c = Client()
-        user = User.objects.get(username='student1')
-        c1 = Course.objects.first()
-        c1.save()
-        c.force_login(user)
-        response = c.get(reverse('course_detail', args=(c1.id,)))
-        self.assertEqual(response.status_code, 200)
-
-    def test_student_index_view_without_authentication(self):
-        c = Client()
-        user = User.objects.get(username='student1')
-        response = c.get(reverse('s_home'))
-        self.assertEqual(response.status_code, 200)
-
-
-    #Tutor Login
-    def test_tutor_index_view_with_authentication(self):
-        c = Client()
-        user = User.objects.get(username='tutor1')
-        c.force_login(user)
-        response = c.get(reverse('s_home'))
-        self.assertEqual(response.status_code, 200)
-
-
+        responses = c.get(reverse('login'))
+        self.assertEqual(responses.status_code, 200)
+        
+    #Test Tutor Login
     def test_tutor_login_success(self):
         c = Client()
         response = c.post(reverse('login'), {'username': 'tutor1','password': '1234'})
@@ -71,13 +40,6 @@ class UserViewTestCase(TestCase):
         c = Client()
         response = c.post(reverse('login'), {'username': 'tutor1','password': '12356'})
         self.assertEqual(response.status_code, 200)
-
-
-    #logout view
-    def test_logout_view(self):
-        c = Client()
-        responses = c.get(reverse('logout'))
-        self.assertEqual(responses.status_code, 302)
 
 
     #Register
@@ -114,12 +76,38 @@ class UserViewTestCase(TestCase):
         responses = c.get(reverse('index'))
         self.assertEqual(responses.status_code, 302)
 
+    #TEST INDEX
+    def test_index_without_audenticate(self):
+        c = Client()
+        response = c.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+   
+    #TEST REGISTER USER
     #Student SignUp
     def test_student_register_view_no_post(self):
         c = Client()
         responses = c.get(reverse('student_register'))
         self.assertEqual(responses.status_code, 200)
 
+    #Test Register for Student
+    def test_register_student_form_save_POST(self):
+        user = User.objects.get(username='student1')
+        form_data = {
+            'username': 'user3',
+            'password1': 'TestPassword1',
+            'password2': 'TestPassword1',
+            'first_name': 'user3f',
+            'last_name': 'user3l',
+            'nick_Name': 'user3n',
+            'age': '12',
+            'degree': 'user3_degree'
+        }
+        c = Client()
+        c.force_login(user)
+        responses = c.post(reverse('student_register'), form_data)
+        self.assertEqual(responses.status_code, 302)
+
+    #Student SignUp Form
     def test_student_form_save_POST(self):
         user = User.objects.get(username='student1')
         form_data = {
@@ -142,78 +130,89 @@ class UserViewTestCase(TestCase):
         c.force_login(user)
         responses = c.get(reverse('index'))
         self.assertEqual(responses.status_code, 302)
-
-    def test_login_view(self):
-        c = Client()
-        responses = c.get(reverse('login'))
-        self.assertEqual(responses.status_code, 200)
-
-    def test_student_index_view(self):
-        c = Client()
-        user = User.objects.get(username='student1')
-        c.force_login(user)
-        responses = c.get(reverse('index'))
-        self.assertEqual(responses.status_code, 302)
-
-    def test_tutor_index_view(self):
-        c = Client()
+    
+    #Tutor SignUp Form
+    def test_register_tutor_form_save_POST(self):
         user = User.objects.get(username='tutor1')
+        form_data = {
+            'username': 'user3',
+            'password1': 'TestPassword1',
+            'password2': 'TestPassword1',
+            'first_name': 'user3f',
+            'last_name': 'user3l',
+            'nick_Name': 'user3n',
+            'age': '12',
+            'profile': 'user3_degree'
+        }
+        form = TutorSignUpForm(data=form_data)
+        if(form.is_valid):
+            tutor = Tutor.objects.create(user=user)
+            tutor.save()
+            form.save()
+        c = Client()
         c.force_login(user)
-        responses = c.get(reverse('index'))
+        responses = c.post(reverse('tutor_register'), form_data)
         self.assertEqual(responses.status_code, 302)
 
-    def test_book_with_authentication(self):
+
+   
+    
+        
+class StudentViewTestCase(TestCase):
+
+    def setUp(self):
+        User.objects.create(username='admin',first_name='first',last_name='last', password = make_password('1234'), email='admin@example.com', is_superuser = True)
+        User.objects.create(username='student1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_student = True)
+        User.objects.create(username='tutor1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_tutor = True)
+        Course.objects.create(owner = User.objects.get(username='tutor1'), name = 'course1', detail = 'detail1')
+    
+    #TEST STUDENT
+    #index student    
+    def test_student_index_view_with_authentication(self):
+        c = Client()
         user = User.objects.get(username='student1')
         c1 = Course.objects.first()
         c1.save()
-
-        c = Client()
         c.force_login(user)
-        c.get(reverse('book_course', args=(c1.id,)))
-        self.assertEqual(c1.students.count(), 1)
+        c.get(reverse('course_detail', args=(c1.id,)))
+        response = c.get(reverse('s_home'))
+        self.assertEqual(response.status_code, 200)
 
-    def test_book_without_authentication(self):
-        c1 = Course.objects.first()
-        c1.save()
-
+    def test_student_index_view_without_authentication(self):
         c = Client()
-        c.get(reverse('book_course', args=(c1.id,)))
-        self.assertEqual(c1.students.count(), 0)
-
-    def test_cancel_with_authentication(self):
+        user = User.objects.get(username='student1')
+        response = c.get(reverse('s_home'))
+        self.assertEqual(response.status_code, 200)
+        
+    #Student Profile
+    def test_student_profile(self):
+        c = Client()
         user = User.objects.get(username='student1')
         c1 = Course.objects.first()
         c1.save()
-
-        c = Client()
         c.force_login(user)
-        response1 = c.get(reverse('book_course', args=(c1.id,)))
-        self.assertEqual(c1.students.count(), 1)
-        response1 = c.get(reverse('course_cancel', args=(c1.id,)))
-        self.assertEqual(c1.students.count(), 0)
+        response1 = c.get(reverse('course_detail', args=(c1.id,)))
+        response = c.get(reverse('s_profile'))
+        self.assertEqual(response.status_code, 200)
 
+    #Course Detail
+    def test_course_detail(self):
+        c = Client()
+        user = User.objects.get(username='student1')
+        c1 = Course.objects.first()
+        c1.save()
+        c.force_login(user)
+        response = c.get(reverse('course_detail', args=(c1.id,)))
+        self.assertEqual(response.status_code, 200)
+
+    #Test Student Profile View
     def test_student_profile_view_without_authentication(self):
         c = Client()
         response = c.get(reverse('s_profile'))
         self.assertEqual(response.status_code, 302)
-
-    def test_student_profile_view_with_authentication(self):
-        c = Client()
-        user = User.objects.get(username='student1')
-        c1 = Course.objects.first()
-        c1.save()
-
-        c.force_login(user)
-        response1 = c.get(reverse('book_course', args=(c1.id,)))
-        self.assertEqual(c1.students.count(), 1)
-        response = c.get(reverse('s_profile'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_index_without_audenticate(self):
-        c = Client()
-        response = c.get(reverse('index'))
-        self.assertEqual(response.status_code, 200)
-
+        
+    
+    #Test Student Update Form Valid
     def test_student_update_valid(self):
         user = User.objects.get(username='student1')
         c = Client()
@@ -231,6 +230,20 @@ class UserViewTestCase(TestCase):
             form.save()
         self.assertTrue(form.is_valid())
 
+    #Student Profile View
+    def test_student_profile_view_with_authentication(self):
+        c = Client()
+        user = User.objects.get(username='student1')
+        c1 = Course.objects.first()
+        c1.save()
+
+        c.force_login(user)
+        response1 = c.get(reverse('book_course', args=(c1.id,)))
+        self.assertEqual(c1.students.count(), 1)
+        response = c.get(reverse('s_profile'))
+        self.assertEqual(response.status_code, 200)
+
+    #Tset Student Update Profile Success
     def test_student_update_success(self):
         c = Client()
         user = User.objects.get(username='student1')
@@ -245,7 +258,74 @@ class UserViewTestCase(TestCase):
         response = c.post(reverse('s_profile_update'), form_data)
         self.assertEqual(response.status_code, 302)
 
-    def test_tutor_update_success(self):
+    #Test Student INDEX
+    def test_student_index_view(self):
+        c = Client()
+        user = User.objects.get(username='student1')
+        c.force_login(user)
+        responses = c.get(reverse('index'))
+        self.assertEqual(responses.status_code, 302)
+    
+    #Student Book Course
+    def test_book_with_authentication(self):
+        user = User.objects.get(username='student1')
+        c1 = Course.objects.first()
+        c1.save()
+
+        c = Client()
+        c.force_login(user)
+        c.get(reverse('book_course', args=(c1.id,)))
+        self.assertEqual(c1.students.count(), 1)
+    
+    def test_book_without_authentication(self):
+        c1 = Course.objects.first()
+        c1.save()
+
+        c = Client()
+        c.get(reverse('book_course', args=(c1.id,)))
+        self.assertEqual(c1.students.count(), 0)
+
+    #Test Cancel Booking
+    def test_cancel_with_authentication(self):
+        user = User.objects.get(username='student1')
+        c1 = Course.objects.first()
+        c1.save()
+
+        c = Client()
+        c.force_login(user)
+        response1 = c.get(reverse('book_course', args=(c1.id,)))
+        self.assertEqual(c1.students.count(), 1)
+        response1 = c.get(reverse('course_cancel', args=(c1.id,)))
+        self.assertEqual(c1.students.count(), 0)
+    
+   
+
+class TutorViewTestCase(TestCase):
+    
+    def setUp(self):
+        User.objects.create(username='admin',first_name='first',last_name='last', password = make_password('1234'), email='admin@example.com', is_superuser = True)
+        User.objects.create(username='student1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_student = True)
+        User.objects.create(username='tutor1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_tutor = True)
+        Course.objects.create(owner = User.objects.get(username='tutor1'), name = 'course1', detail = 'detail1')
+    
+    #TEST TUTOR
+    #index tutor   
+    def test_tutor_index_view_without_authentication(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        response = c.get(reverse('t_home'))
+        self.assertEqual(response.status_code, 200)
+    
+    def test_tutor_index_view_with_authentication(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        c.force_login(user)
+        responses = c.get(reverse('index'))
+        self.assertEqual(responses.status_code, 302)
+
+
+    #Tutor Update Profile Success
+    def test_tutor_update_profile_success(self):
         c = Client()
         user = User.objects.get(username='tutor1')
         c.force_login(user)
@@ -259,6 +339,7 @@ class UserViewTestCase(TestCase):
         response = c.post(reverse('t_profile_update'), form_data)
         self.assertEqual(response.status_code, 302)
 
+    #Tutor Update Profile View
     def test_tutor_update_valid(self):
         user = User.objects.get(username='tutor1')
         c = Client()
@@ -275,43 +356,8 @@ class UserViewTestCase(TestCase):
         if(form.is_valid):
             form.save()
         self.assertTrue(form.is_valid())
-
     
-
-    def test_register_student_form_save_POST(self):
-        user = User.objects.get(username='student1')
-        form_data = {
-            'username': 'user3',
-            'password1': 'TestPassword1',
-            'password2': 'TestPassword1',
-            'first_name': 'user3f',
-            'last_name': 'user3l',
-            'nick_Name': 'user3n',
-            'age': '12',
-            'degree': 'user3_degree'
-        }
-        c = Client()
-        c.force_login(user)
-        responses = c.post(reverse('student_register'), form_data)
-        self.assertEqual(responses.status_code, 302)
-
-    def test_register_tutor_form_save_POST(self):
-        user = User.objects.get(username='tutor1')
-        form_data = {
-            'username': 'user3',
-            'password1': 'TestPassword1',
-            'password2': 'TestPassword1',
-            'first_name': 'user3f',
-            'last_name': 'user3l',
-            'nick_Name': 'user3n',
-            'age': '12',
-            'profile': 'user3_degree'
-        }
-        c = Client()
-        c.force_login(user)
-        responses = c.post(reverse('tutor_register'), form_data)
-        self.assertEqual(responses.status_code, 302)
-
+    #Test Make Course 
     def test_make_course_form_save_POST(self):
         user = User.objects.get(username='tutor1')
         form_data = {
@@ -324,7 +370,69 @@ class UserViewTestCase(TestCase):
         c.force_login(user)
         responses = c.post(reverse('make_course'), form_data)
         self.assertEqual(responses.status_code, 302)
+    
+    #Test Tutor CourseView 
+    def test_tutor_view_with_comment(self):
+        c = Client()
+        Tutor.objects.create(user = User.objects.get(username='tutor1'))
+        Review.objects.create(tutor = Tutor.objects.first(), student = User.objects.get(username='student1'), comment = 'comment1')
+        user = User.objects.get(username='student1')
+        tutor = User.objects.get(username='tutor1')
+        c.force_login(user)
+        response = c.get(reverse('tutor_detail', args=(tutor.id,)))
+        self.assertEqual(response.status_code, 200)
 
+
+    def test_tutor_view_without_comment(self):
+        c = Client()
+        Tutor.objects.create(user = User.objects.get(username='tutor1'))
+        user = User.objects.get(username='student1')
+        tutor = User.objects.get(username='tutor1')
+        c.force_login(user)
+        response = c.get(reverse('tutor_detail', args=(tutor.id,)))
+        self.assertEqual(response.status_code, 200)
+    
+    def test_tutor_view_without_auth(self):
+        c = Client()
+        tutor = User.objects.get(username='tutor1')
+        response = c.get(reverse('tutor_detail', args=(tutor.id,)))
+        self.assertEqual(response.status_code, 302)
+    
+    #Test Tutor Profile
+    def test_tutor_profile_view_without_authentication(self):
+        c = Client()
+        response = c.get(reverse('t_profile'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_tutor_profile_view_with_authentication_with_review(self):
+        c = Client()
+        Tutor.objects.create(user = User.objects.get(username='tutor1'))
+
+        Review.objects.create(tutor = Tutor.objects.first(), student = User.objects.get(username='student1'), comment = 'comment1')
+        user = User.objects.get(username='tutor1')
+
+        c.force_login(user)
+        response = c.get(reverse('t_profile'))
+        self.assertEqual(response.status_code, 200)
+    
+    def test_tutor_profile_view_with_authentication(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+
+        c.force_login(user)
+        response = c.get(reverse('t_profile'))
+        self.assertEqual(response.status_code, 200)
+
+class AdminViewTestCase(TestCase):
+
+    def setUp(self):
+        User.objects.create(username='admin',first_name='first',last_name='last', password = make_password('1234'), email='admin@example.com', is_superuser = True)
+        User.objects.create(username='student1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_student = True)
+        User.objects.create(username='tutor1',first_name='first',last_name='last', password = make_password('1234'), email='user@example.com', is_tutor = True)
+        Course.objects.create(owner = User.objects.get(username='tutor1'), name = 'course1', detail = 'detail1')
+    
+     #TEST ADMIN
+    #Admin Index
     def test_admin_index_with_authendicated(self):
         c = Client()
         user = User.objects.get(username='admin')
@@ -367,53 +475,3 @@ class UserViewTestCase(TestCase):
         response = c.post(reverse('delete_review', args=(tutor.id, review.id)))
         self.assertEqual(response.status_code, 302)
     
-    def test_tutor_view_with_comment(self):
-        c = Client()
-        Tutor.objects.create(user = User.objects.get(username='tutor1'))
-        Review.objects.create(tutor = Tutor.objects.first(), student = User.objects.get(username='student1'), comment = 'comment1')
-        user = User.objects.get(username='student1')
-        tutor = User.objects.get(username='tutor1')
-        c.force_login(user)
-        response = c.get(reverse('tutor_detail', args=(tutor.id,)))
-        self.assertEqual(response.status_code, 200)
-
-
-    def test_tutor_view_without_comment(self):
-        c = Client()
-        Tutor.objects.create(user = User.objects.get(username='tutor1'))
-        user = User.objects.get(username='student1')
-        tutor = User.objects.get(username='tutor1')
-        c.force_login(user)
-        response = c.get(reverse('tutor_detail', args=(tutor.id,)))
-        self.assertEqual(response.status_code, 200)
-    
-    def test_tutor_view_without_auth(self):
-        c = Client()
-        tutor = User.objects.get(username='tutor1')
-        response = c.get(reverse('tutor_detail', args=(tutor.id,)))
-        self.assertEqual(response.status_code, 302)
-    
-    def test_tutor_profile_view_without_authentication(self):
-        c = Client()
-        response = c.get(reverse('t_profile'))
-        self.assertEqual(response.status_code, 302)
-
-    def test_tutor_profile_view_with_authentication_with_review(self):
-        c = Client()
-        Tutor.objects.create(user = User.objects.get(username='tutor1'))
-
-        Review.objects.create(tutor = Tutor.objects.first(), student = User.objects.get(username='student1'), comment = 'comment1')
-        user = User.objects.get(username='tutor1')
-
-        c.force_login(user)
-        response = c.get(reverse('t_profile'))
-        self.assertEqual(response.status_code, 200)
-    
-    def test_tutor_profile_view_with_authentication(self):
-        c = Client()
-        user = User.objects.get(username='tutor1')
-
-        c.force_login(user)
-        response = c.get(reverse('t_profile'))
-        self.assertEqual(response.status_code, 200)
-        
