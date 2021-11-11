@@ -1,4 +1,14 @@
+
+
+{% extends "main/layout.html" %}
+
+{% block profile %}
+<a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+
+{% block content %}
 Profile<br>
+
 Full Name : {{tutor.user}}<br>
 NickName : {{tutor.user.nick_Name}}<br>
 Age : {{tutor.user.age}}<br>
@@ -9,8 +19,10 @@ Average Star : {{avgstar}}<br>
 
 <a href="{% url 't_home' %}">Back</a><br>
 
-My Review<<br>
+My Review<br>
 {% for review in reviews %}
         {{review.student.first_name}} {{review.student.last_name}}<br>
         {{review.comment}} {{review.star}}/5<br>
 {% endfor %}
+{% endblock %}
+
