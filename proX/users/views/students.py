@@ -23,12 +23,23 @@ class student_register(CreateView):
 
 def CourseListView(request):
     courselist = []
-    for c in Course.objects.all():
-        if request.user not in c.students.all():
-            courselist.append(c) 
+    check_search = False
+    search = ''
+    if request.method == "POST":
+        search = request.POST["search"]
+        check_search = True
+        for c in Course.objects.all():
+            if c.search(search):
+                courselist.append(c)
+    else:
+        for c in Course.objects.all():
+            if request.user not in c.students.all():
+                courselist.append(c) 
     return render(request, "../templates/students/home.html", {
         "courses": Course.objects.all() ,
-        "courselist": courselist
+        "courselist": courselist,
+        "check_search": check_search,
+        "search" : search
     })
         
 
