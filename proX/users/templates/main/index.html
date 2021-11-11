@@ -6,7 +6,30 @@
 
 
 {% block body %}
-<a href="{% url 'login' %}">LogIn</a><br>
-<a href="{% url 'register' %}">Register</a>
+<div style="margin-top: 5em;">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active w3-margin"> YOU ARE NOT LOGGED IN </h2>
+
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="static/images/only.png" id="icon" alt="User Icon" />
+      </div>
+  
+    
+      <form>
+        <a href="{%  url 'login' %}"><input type="button" class="fadeIn fourth" value="Log in" style="margin-bottom:1em;"></a>
+        <a href="{% url 'register' %}"><input type="button" class="fadeIn fourth" value="Register"></a>
+        
+      </form>
+      
+      
+  
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
