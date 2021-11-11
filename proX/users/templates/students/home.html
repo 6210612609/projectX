@@ -21,58 +21,38 @@ tr:nth-child(even) {
 {% endblock %}
 
 {% block title %}
-
 {% endblock %}
+
+
+
+
 {% block content %}
     <br>
-    <label><h1 style="color:black;margin-left:1em; " ><b>Welcome, {{request.user.username}}</b></h1></label>
-    <a style="margin-left:2em;margin-top:0.5em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red w3-blue" href="{% url 'logout' %}">Logout</a>
-    <br>
+    <h1 style="color:black;margin-left:1em; " ><b>Welcome, {{request.user.username}}</b></h1>
     <br>
     <h3 style="margin-left:2em;"> Student Home </h3>
     <ul>
         <li style="color:black;margin-left:3.5em;font-size:20px;">Username: {{ request.user.username }}</li>
         <li style="color:black;margin-left:3.5em;font-size:20px;">Name: {{ request.user.nick_Name }}</li>
     </ul>
-
+    
     <form action="{% url 's_home' %}" method = "POST" >
-    {%csrf_token%}
-      <input style="color:black;margin-left:3.5em;" type="text" placeholder="Search course" name="search">
+        {%csrf_token%}
+      <input style="margin-left:5em;width:300px;" type="text" placeholder="Search course..." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
+
+
     <br>
     {%if check_search == True %}
-        <h3 style="margin-left:2em;">Search result for : {{ search }}</h3>
-        <table style="margin-left:4em; font-size:18px; ">
-        <tr>
-            <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
-            <th style="background-color:#dddddd;" width=180px;>Course Name</th>
-            <th style="background-color:#dddddd;" width=200px;>Course Detail</th>
-            <th style="background-color:#dddddd;" width=180px;>Course Owner</th>
-        </tr>
-           
-            {% for course in courselist %}
-            <tr>
-                <td style="text-align:center;">{{course.id}}</td>
-                <td><a style="text-decoration:none;" href="{% url 'course_detail' course.id %}">{{course.name}}</a></td>
-                <td>{{course.detail}}</td>
-                <td>{{course.owner}}</td>
-            </tr>
-            {% endfor %}
-    </table>
+        <h3 style="color:black;margin-left:2em;">Search result for : {{ search }}</h3>
     {%else%}
-        
+        <h3 style="color:black;margin-left:2em;"> Courses you have not applied.</h3>
     {%endif%}
-    {% for course in courselist %}
-        
-    {% endfor %}
-
     <br>
-    <h3 style="margin-left:2em;">Courses which not apply</h3>
-    <br>
-
     
-    <table style="margin-left:4em; font-size:18px; ">
+    
+    <table style="margin-left:5em; font-size:18px; ">
         <tr>
             <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
             <th style="background-color:#dddddd;" width=180px;>Course Name</th>
@@ -87,10 +67,14 @@ tr:nth-child(even) {
                 <td>{{course.detail}}</td>
                 <td>{{course.owner}}</td>
             </tr>
+            
+            
             {% endfor %}
     </table>
 
 {% endblock %}
 {% block body %}
-
+<br>
+<br>
+<a style="margin-left:3em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red w3-blue" href="{% url 'logout' %}">Logout</a>
 {% endblock %}
