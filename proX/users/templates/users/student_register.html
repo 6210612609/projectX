@@ -1,16 +1,22 @@
-<!DOCTYPE html>
+{% extends "users/templatesignup.html" %}
+
+
 {% load static %}
-<html>
+{% block body %}
     <head>
-        <title>Only Tutor</title>
+        <title>Demo Registration</title>
         <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
     </head>
+
+
+{% load crispy_forms_tags %}
     <body>
         <h2>Student Register</h2><br>
         <form action="{% url 'student_register' %}" method = "POST" class="form-group">
         {%csrf_token%}
-        {{form}}
-        <button type= "submit">Register</button>
+        {{form|crispy}}
+        <button type= "submit"class="btn btn-success">Register</button>
         </form>
     </body>
-</html>
+
+{% endblock %}

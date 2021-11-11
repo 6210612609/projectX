@@ -21,8 +21,11 @@ tr:nth-child(even) {
 {% endblock %}
 
 {% block title %}
-
 {% endblock %}
+
+
+
+
 {% block content %}
     <br>
     <h1 style="color:black;margin-left:1em; " ><b>Welcome, {{request.user.username}}</b></h1>
@@ -33,7 +36,6 @@ tr:nth-child(even) {
         <li style="color:black;margin-left:3.5em;font-size:20px;">Name: {{ request.user.nick_Name }}</li>
     </ul>
     <br>
-    <h3 style="color:black;margin-left:2em;">Courses which not apply</h3>
     <br>
     
     <table style="margin-left:4em; font-size:18px; ">

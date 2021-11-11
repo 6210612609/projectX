@@ -1,8 +1,43 @@
+{% extends "users/templatesignup.html" %}
 <!DOCTYPE html>
 {% load static %}
 <head>
     <title>Only Tutor</title>
 <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
 </head>
-<a type="button" class="btn btn-block" href="{% url 'student_register' %}">I am a Student</a>
-<a type="button" class="btn btn-block" href="{% url 'tutor_register' %}">I am an Tutor</a>
+
+<html>
+<style>
+</style>
+<body>
+  {% block body %}
+  
+  <div style="margin-top:3% ;">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h1 class="active w3-margin"> Select your roles </h1>
+
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="static/images/only.png" id="icon" alt="User Icon" />
+      </div>
+  
+    
+      <form>
+        <a href="{% url 'tutor_register' %}"><input type="button" class="fadeIn fourth" value="Tutors" style="margin-bottom:1em;"></a>
+        <a href="{% url 'student_register' %}"><input type="button" class="fadeIn fourth" value="Student"></a>
+        
+      </form>
+      
+      
+  
+    </div>
+  </div>
+  </div>
+</div>
+  {% endblock %}
+
+</body>
+</html>

@@ -13,6 +13,7 @@ class StudentSignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
+        fields = ["username","password1", "password2","first_name", "last_name", "nick_Name", "age","degree"]
 
 
     @transaction.atomic
