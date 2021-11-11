@@ -1,0 +1,17 @@
+{% extends "main/layout.html" %}
+{% block profile %}
+<a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+
+{% block content %}
+course name : {{ object.name }}<br>
+course detail : {{ object.detail }}<br>
+course amount : {{ object.amount }}<br>
+course price : {{ object.price }} Baht/Hr.<br>
+                        
+    {% for s in students %}
+    <a href="{% url 'student_detail' s.id %}">{{ s.first_name }} {{ s.last_name }}</a>  <br>           
+    {% endfor %}
+   
+    <a href="{% url 'course_update' object.id %}">update</a><br><br><a href="{% url 't_home' %}">Home</a>
+{% endblock %}

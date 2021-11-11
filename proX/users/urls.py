@@ -26,8 +26,10 @@ urlpatterns=[
      path('tutors/profile', tutors.ProfileView, name='t_profile'),
      path('tutors/profile/update', tutors.TutorUpdate, name='t_profile_update'),
      path('tutors/course/make_course/',tutors.CourseCreateView.as_view(), name='make_course'),
-     path('tutors/course/<int:pk>/', tutors.CourseUpdateView.as_view(), name='course_update'),
+     path('tutors/course/<int:course_id>/',tutors.CourseDetailView, name='t_course_detail'),
+     path('tutors/course/<int:pk>/update', tutors.CourseUpdateView.as_view(), name='course_update'),
      path('tutors/course/<int:pk>/delete', tutors.CourseDeleteView.as_view(), name='course_delete'),
+     path('tutors/student/<int:student_id>/', tutors.studentDetailView, name='student_detail'),
 
     
 
