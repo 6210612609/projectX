@@ -35,10 +35,24 @@ tr:nth-child(even) {
         <li style="color:black;margin-left:3.5em;font-size:20px;">Username: {{ request.user.username }}</li>
         <li style="color:black;margin-left:3.5em;font-size:20px;">Name: {{ request.user.nick_Name }}</li>
     </ul>
+    
+    <form action="{% url 's_home' %}" method = "POST" >
+        {%csrf_token%}
+      <input style="margin-left:5em;width:300px;" type="text" placeholder="Search course..." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+
     <br>
+    {%if check_search == True %}
+        <h3 style="color:black;margin-left:2em;">Search result for : {{ search }}</h3>
+    {%else%}
+        <h3 style="color:black;margin-left:2em;"> Courses you have not applied.</h3>
+    {%endif%}
     <br>
     
-    <table style="margin-left:4em; font-size:18px; ">
+    
+    <table style="margin-left:5em; font-size:18px; ">
         <tr>
             <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
             <th style="background-color:#dddddd;" width=180px;>Course Name</th>

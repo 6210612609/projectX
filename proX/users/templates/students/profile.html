@@ -1,20 +1,26 @@
 {% extends "main/layout.html" %}
 
 {% block profile %}
-<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
 {% block body %}
 
-
-Profile<br>
-Full Name : {{request.user}}<br>
-NickName : {{request.user.nick_Name}}<br>
-Age : {{request.user.age}}<br>
-Degree : {{ request.user.degree }}<br>
-
-My Course <br>
+<br>
+<h1 style="margin-left:0.5em;"><b>Profile</b><br></h1>
+<br>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Full Name : {{request.user}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>NickName : {{request.user.nick_Name}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Age : {{request.user.age}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Degree : {{ request.user.degree }}</li></h3>
+<br>
+<h3 style="margin-left:0.75em;font-size:30px;"><b>My Course</b></h3> 
+<br>
     {% for course in courselist %}
-    <li> <a href="{% url 'course_detail' course.pk %}">{{ course.name }}</a> <a href="{% url 'course_cancel' course.pk %}">Cancel This Course</a></li>
+    <a style="margin-left:1.5%;font-size:25px;padding-right:1%;" href="{% url 'course_detail' course.pk %}"><label>{{ course.name }}</label></a><br> 
+    <a style="margin-left:2em;font-size:20px;">&#10060;</a>
+    <a style="margin-left0%;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red w3-blue" href="{% url 'course_cancel' course.pk %}">Cancel This Course</a> <br>
+    <br>
     {% endfor %}
-<a href="{% url 's_profile_update' %}">Update Profile</a>
+<br>
+<a style="margin-left:3em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green w3-blue" href="{% url 's_profile_update' %}">Update Profile &#128736;</a>
 {% endblock %}
