@@ -21,8 +21,11 @@ tr:nth-child(even) {
 {% endblock %}
 
 {% block title %}
-
 {% endblock %}
+
+
+
+
 {% block content %}
     <br>
     <h1 style="color:black;margin-left:1em; " ><b>Welcome, {{request.user.username}}</b></h1>
@@ -32,26 +35,22 @@ tr:nth-child(even) {
         <li style="color:black;margin-left:3.5em;font-size:20px;">Username: {{ request.user.username }}</li>
         <li style="color:black;margin-left:3.5em;font-size:20px;">Name: {{ request.user.nick_Name }}</li>
     </ul>
-<<<<<<< HEAD
+    
     <form action="{% url 's_home' %}" method = "POST" >
         {%csrf_token%}
       <input type="text" placeholder="Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 
+
+    <br>
     {%if check_search == True %}
-        <h3>Search result for : {{ search }}</h3>
+        <h3 style="color:black;margin-left:2em;">Search result for : {{ search }}</h3>
     {%else%}
-        <h3>Courses which not apply</h3>
+        <h3 style="color:black;margin-left:2em;">All Courses</h3>
     {%endif%}
-    {% for course in courselist %}
-        <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a> {{ course.detail }} {{ course.owner }}<br>
-    {% endfor %}
-=======
     <br>
-    <h3 style="color:black;margin-left:2em;">Courses which not apply</h3>
     <br>
->>>>>>> d59fae7c95be828aa925879024fe639e915a73fc
     
     <table style="margin-left:4em; font-size:18px; ">
         <tr>
