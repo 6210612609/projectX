@@ -27,14 +27,8 @@ tr:nth-child(even) {
 
 
 {% block content %}
-    <br>
-    <h1 style="color:black;margin-left:1em; " ><b>Welcome, {{request.user.username}}</b></h1>
-    <br>
-    <h3 style="margin-left:2em;"> Student Home </h3>
-    <ul>
-        <li style="color:black;margin-left:3.5em;font-size:20px;">Username: {{ request.user.username }}</li>
-        <li style="color:black;margin-left:3.5em;font-size:20px;">Name: {{ request.user.nick_Name }}</li>
-    </ul>
+    
+    
     
     <form action="{% url 's_home' %}" method = "POST" >
         {%csrf_token%}
@@ -76,5 +70,5 @@ tr:nth-child(even) {
 {% block body %}
 <br>
 <br>
-<a style="margin-left:3em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red w3-blue" href="{% url 'logout' %}">Logout</a>
+<a style="margin-left:3em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red" href="{% url 'logout' %}">Logout</a>
 {% endblock %}

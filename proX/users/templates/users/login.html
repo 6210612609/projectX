@@ -16,29 +16,20 @@
 {% block body %}
 <body>
     <br>
-    <br>
-    <br>
-    <br>
-<div class="a">
-<img style="background: lightskyblue;" >    
-<img style="width:250px;height:250px;" src="{% static 'images/ninja.jpg' %}">
-<h1> STUDENT </h1>
+    
+<div style="text-align: center;"> 
+<img style="width:240px;height:240px;" src="{% static 'images/ninja.jpg' %}">
 <form action="{% url 'login' %}" method = "POST" class="form-group">
     {%csrf_token%}
-    <div style="margin-right: 10%">
-    <h5 class="w3-padding-1">Username:</h5>
-    </div>
-    <input type="text" id="form.username" name="username"><br>
-    <div style="margin-right: 10%">
-    <h5 class="w3-padding-1">Password:</h5>
-    </div>
     
-    <input type="text" id="form.password" name="password"><br>
+    
+    <input type="text" style="margin: 20px;" id="form.username" placeholder="Username" name="username"><br>
+    <input type="password" id="form.password" placeholder="Password" name="password"><br>
     
     <br>
-    <input type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue" value="Sign in">
+    <input type="submit" style="margin: 3px;" class="w3-bar-item w3-button w3-hide-small w3-padding-large" value="Sign in">
   </form>
-   <li>Don't have an account? Create One <a href="{% url 'register' %}" style="color: blue;">Here</li>
+   <span>Don't have an account? Create One <a href="{% url 'register' %}" style="color: blue;">Here</span>
 </div>
 </body>
 {% endblock %}
