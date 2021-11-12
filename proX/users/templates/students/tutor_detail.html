@@ -31,38 +31,42 @@
         left:0;
         z-index:110;
     }
+     div.p {
+        width: 600px;
+        padding: 10px;
+        border: 2px solid #56baed;
+        margin-bottom: 1px;
+        border-radius: 7px ;
+    }
 
 </style>
 Full Name : {{object.user.first_name}} {{object.user.last_name}}<br>
 NickName : {{object.user.nick_Name}}<br>
 Age : {{object.user.age}}<br>
 Profile : {{object.user.profile}}<br>
-Average Star : <h1><div style= "width:calc(20% * {{ avgstar }}"></div>
+Average Star : <div style="margin-left: 155px; margin-top: -34px;"><h1><div style= "width:calc(20% * {{ avgstar }})"></div>
 <img src = "{% static 'images/stars.png' %}"  title = "{{avgstar}}">
-</h1><br>
+</h1></div><br>
 
 
-
+Your Reviews
 <br>
 {% for review in reviews %}
-<div style="border: rgb(0, 0, 0); border-style: groove;">
-    {{review.student.first_name}} {{review.student.last_name}} <br>{{review.comment}} {{review.star}}/5<br>
+<div class="comment fadeInDown" style="text-align: left;">
+<div class="p" >
+    {{review.student.first_name}} {{review.student.last_name}} <br>{{review.star}}/5<br>{{review.comment}} <br>
     <br>
+</div>
 </div>    
 {% endfor %}
 
 </div>
-<div style="margin-left: 2%;">
+<div style="margin-left: 2%; margin-bottom: 10px;">
 {% if request.user.is_student %}
     <form action="{% url 'tutor_comment' object.user.id %}" method="POST">
         {% csrf_token %}
         <br>
         <input type="text" name="comment"  placeholder="Enter Your Comment For This Tutor">
-<<<<<<< HEAD
-        <input type="int" name="star">
-            
-        
-=======
         <div class="rate">
             <input name="star" type="radio" id="star5"  value="5" />
             <label for="star5" title="text">5 stars</label>
@@ -81,8 +85,7 @@ Average Star : <h1><div style= "width:calc(20% * {{ avgstar }}"></div>
             
         </div>
  
->>>>>>> refs/remotes/origin/master
-        <button type="submit">Submit</button>
+        <button type="submit" style="color: #ffffff; background-color: #56baed; border: #dddddd; margin-left:70px ;" class="btn btn-primary btn-sm w3-large ">Submit</button>
             
     </form>
 </div>

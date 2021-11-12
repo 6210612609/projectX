@@ -14,7 +14,7 @@
 <form action="{% url 'make_course' %}" method="post" novalidate>
         {% csrf_token %}
         {{form}}
-        <button type="submit" >Save</button>
-        <a href="{% url 't_home' %}" >Nevermind</a>
+        <button type="submit" style="color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " >Save</button>
+        <a href="{% url 't_home' %}" style="color: #ffffff; background-color: #cfcfcf; border: #dddddd;" class="btn btn-primary btn-sm w3-hover-black " >Nevermind</a>
 </form>
 {% endblock %}

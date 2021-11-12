@@ -34,14 +34,14 @@
 
 {% block body %}
     <br>
-    <h3 style="margin-left:2em;"> Tutor Home </h3>
+    <h2 style="margin-left:2em;"> Tutor Home </h2>
     <ul>
         <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;" >Username: {{ request.user.username }}</li>
         <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;">Name: {{ request.user.nick_Name }}  {{ request.user.last_name }}</li>
     </ul>
 
 
-    <a style="margin-left:7em;  color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " href="{% url 'make_course' %}">Make Course</a><br>
+    <a style="margin-left:7em;  color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " href="{% url 'make_course' %}">Make Course &#x1F4DA;</a><br>
     <br>
     <table style="margin-left:5em; font-size:18px; ">
         <tr>
