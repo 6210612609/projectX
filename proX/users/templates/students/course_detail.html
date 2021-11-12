@@ -16,8 +16,9 @@
 <h3 style="margin-left:1.5em;font-size:20px;"><li> Course price : {{ object.price }} Baht/Hr.</li><br></h3>
 <br>
 <h3 style="margin-left:1em;font-size:24px;"><b>To this course owners (Tutor)</b></h3> 
-<br><label><a style="margin-left:1.5em;" href="{% url 'tutor_detail' object.owner.pk %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green w3-blue" target="_blank">{{ object.owner }}</a><br></label>
-                        
+
+<br><label><a style="margin-left:1.5em;" href="{% url 'tutor_detail' object.owner.pk %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green w3-blue">{{ object.owner }}</a><br></label>
+    
     {% if request.user not in students %}
             {% if object.count < object.amount %}
                 <a style="margin-left:1.5em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green w3-blue" href="{% url 'book_course' object.id %}">Register</a>
@@ -25,6 +26,8 @@
                 <br>
                 <p style="margin-left:1.5em;font-size:20px;">Click register button to register this course.</p><br>   
             {% else %}
+                <br>
+                <br>
                 <p style="margin-left:1.5em;font-size:20px;">Can't register because course is full.</p>
             {% endif %}
           

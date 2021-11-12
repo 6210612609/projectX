@@ -21,22 +21,22 @@
   
       <!-- Icon -->
       <div class="fadeIn first">
-        <img src="static/images/only.png" id="icon" alt="User Icon" />
+        <img src="{% static 'images/only.png'%}" id="icon" alt="User Icon" />
       </div>
   
     
-      <form>
+
         <a href="{% url 'tutor_register' %}"><input type="button" class="fadeIn fourth" value="Tutors" style="margin-bottom:1em;"></a>
         <a href="{% url 'student_register' %}"><input type="button" class="fadeIn fourth" value="Student"></a>
         
-      </form>
+      
       
       
   
     </div>
   </div>
   </div>
-</div>
+
   {% endblock %}
 
 </body>

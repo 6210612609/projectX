@@ -5,19 +5,37 @@
 
 {% block body %}
     <head>
-        <title>Demo Registration</title>
+        <title>Student Registration</title>
         <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+       
     </head>
 
 
 {% load crispy_forms_tags %}
+    <div style="text-align: center;">
     <body>
-        <h2>Student Register</h2><br>
+        <h2 style="margin: 10px 8px 10px 8px;font-size: 55px;color: #5fbae9;" >Student Register</h2><br><br>
         <form action="{% url 'student_register' %}" method = "POST" class="form-group">
         {%csrf_token%}
-        {{form|crispy}}
-        <button type= "submit"class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue">Register</button>
+            <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" placeholder="Username" class="textinput textInput form-control" required="" id="id_username">
+            <br>
+            <input type="password" name="password1" style="margin-top: 8px;" placeholder="Password" autocomplete="new-password" class="textinput textInput form-control" required="" id="id_password1">
+            <br>
+            <input type="password" name="password2" style="margin-top: 8px;" placeholder="Confirm Password" autocomplete="new-password" class="textinput textInput form-control" required="" id="id_password2" >
+            <br>
+            <input type="text" name="first_name" style="width: 206px;margin-top: 8px;" placeholder="First Name"  class="textinput textInput form-control" required="" id="id_first_name">
+            
+            <input type="text" name="last_name" style="width: 206px;margin-top: 8px;" placeholder="Last Name"  class="textinput textInput form-control" required="" id="id_last_name">
+            <br>
+            <input type="text" name="nick_Name" style="width: 115px;margin-top: 8px;" placeholder="Nickname" class="textinput textInput form-control" required="" id="id_nick_Name">
+            
+            <input type="text" name="age" style="width: 68px;margin-top: 8px;" placeholder="Age" class="textinput textInput form-control" required="" id="id_age">
+            
+            <input type="text" name="degree" style="width: 225px;margin-top: 8px;" placeholder="Degree" class="textinput textInput form-control" required="" id="id_degree">
+            <br><br>
+            <button type="submit" style="border-radius: 5px 5px 5px 5px;margin-top: 8px;background-color: #5fbae9;color: white;"class="w3-bar-item w3-button w3-hide-small w3-padding-large">Register</button>
         </form>
+        <br>
     </body>
 
 {% endblock %}
