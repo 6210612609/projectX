@@ -1,5 +1,27 @@
 {% extends "main/layout.html" %}
 
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+ 
+</style>
+
+
+
+
 {% block profile %}
 <a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
@@ -11,14 +33,35 @@
 
 
 {% block body %}
+    <br>
+    <h3 style="margin-left:2em;"> Tutor Home </h3>
+    <ul>
+        <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;" >Username: {{ request.user.username }}</li>
+        <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;">Name: {{ request.user.nick_Name }}  {{ request.user.last_name }}</li>
+    </ul>
 
-<a href="{% url 'logout' %}">Logout</a><br>
-<a href="{% url 'make_course' %}">Make Course</a><br>
 
-{% for course in owners %}
-    
-    <li><a href="{% url 't_course_detail' course.pk %}">{{ course.name }}</a> {{ course.detail }} {{ course.amount }}</li>
-{% endfor %}
+    <a style="margin-left:7em;  color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " href="{% url 'make_course' %}">Make Course</a><br>
+    <br>
+    <table style="margin-left:5em; font-size:18px; ">
+        <tr>
+            <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
+            <th style="background-color:#dddddd;" width=180px;>Course Name</th>
+            <th style="background-color:#dddddd;" width=200px;>Course Detail</th>
+            <th style="background-color:#dddddd;" width=180px;>Amount</th>
+        </tr>
+       
+        {% for course in owners %}
+        <tr>
+            <td style="text-align:center;">{{course.id}}</td>
+            <td><a style="text-decoration:none;" href="{% url 't_course_detail' course.pk %}">{{course.name}}</a></td>
+            <td>{{course.detail}}</td>
+            <td>{{course.amount}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+
 
 {% endblock %}
 
