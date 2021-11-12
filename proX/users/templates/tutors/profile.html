@@ -7,19 +7,22 @@
 {% endblock %}
 
 {% block content %}
-Profile<br>
+<br>
+<h1 style="margin-left:0.5em;"><b>Profile</b><br></h1>
+<br>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Full Name : {{tutor.user}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>NickName : {{tutor.user.nick_Name}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Age : {{tutor.user.age}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Profile: {{ tutor.user.profile }}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Average Star : {{avgstar}}</li></h3>
+<br>
 
-Full Name : {{tutor.user}}<br>
-NickName : {{tutor.user.nick_Name}}<br>
-Age : {{tutor.user.age}}<br>
-Profile: {{ tutor.user.profile }}<br>
-Average Star : {{avgstar}}<br>
+<a style="margin-left:2%;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 't_profile_update' %}"><label>Update My Profile</label></a>
 
-<a href="{% url 't_profile_update' %}">Update My Profile</a><br>
 
-<a href="{% url 't_home' %}">Back</a><br>
-
-My Review<br>
+<br>
+<br>
+<h1 style="margin-left:0.75em;font-size:28px;"><b>My Review</b><br></h1>
 {% for review in reviews %}
         {{review.student.first_name}} {{review.student.last_name}}<br>
         {{review.comment}} {{review.star}}/5<br>

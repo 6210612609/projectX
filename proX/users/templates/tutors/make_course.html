@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+<h1> Make course </h1>
 <form action="{% url 'make_course' %}" method="post" novalidate>
         {% csrf_token %}
         {{form}}
