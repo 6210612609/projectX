@@ -4,29 +4,37 @@
 {% endblock %}
 
 {% block content %}
+<div style="margin-left: 2%; font-size: x-large;" >
+    <br>
 Full Name : {{object.user.first_name}} {{object.user.last_name}}<br>
 NickName : {{object.user.nick_Name}}<br>
 Age : {{object.user.age}}<br>
 Profile : {{object.user.profile}}<br>
 Average Star : {{avgstar}}<br>
-
+<hr>
 
 
 <br>
 {% for review in reviews %}
+<div style="border: rgb(0, 0, 0); border-style: groove;">
     {{review.student.first_name}} {{review.student.last_name}} <br>{{review.comment}} {{review.star}}/5<br>
+    <br>
+</div>    
 {% endfor %}
 
-
+</div>
+<div style="margin-left: 2%;">
 {% if request.user.is_student %}
     <form action="{% url 'tutor_comment' object.user.id %}" method="POST">
         {% csrf_token %}
+        <br>
         <input type="text" name="comment"  placeholder="Enter Your Comment For This Tutor">
         <input type="int" name="star">
             
-            
+        
         <button type="submit">Submit</button>
             
     </form>
+</div>
 {%endif%}
 {% endblock %}
