@@ -6,7 +6,7 @@
 
 {% block content %}
 
-
+<div style="text-align: center;">
 <form method="post" novalidate>
     <h1>Update your Tutor profile</h1> <br>
         {% csrf_token %}
@@ -27,6 +27,7 @@
     <a href="{% url 't_home' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue" >Cancel</a>
     </div> 
 </form>
+</div>
 {% endblock %}
 
         
