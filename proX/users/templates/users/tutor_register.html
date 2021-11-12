@@ -13,6 +13,6 @@
 <form action="{% url 'tutor_register' %}" method = "POST" class="form-group">
     {%csrf_token%}
     {{form|crispy}}
-    <button type= "submit">Register</button>
+    <button type= "submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue">Register</button>
 </form>
 {% endblock %}
