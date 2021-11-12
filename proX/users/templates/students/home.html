@@ -32,7 +32,7 @@ tr:nth-child(even) {
     <br>
     <form action="{% url 's_home' %}" method = "POST" >
         {%csrf_token%}
-      <input style="margin-left:3em;width400px;" type="text" placeholder="Search course..." name="search">
+      <input style="margin-left:3em;width:400px;" type="text" placeholder="Search course..." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 
