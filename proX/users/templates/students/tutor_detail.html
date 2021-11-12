@@ -1,14 +1,43 @@
 {% extends "main/layout.html" %}
+{% load static %}
 {% block profile %}
 <a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
 
 {% block content %}
+<style>
+    h1{
+        width: 100px;
+        position: relative;
+    }
+
+    h1 div{
+        background-color: gold;
+        width: 50%;
+        position:absolute;
+        top:0;
+        left:0;
+        height: 18px;
+        font-size: 20px;
+        z-index: 100;
+    }
+
+    h1 img{
+        width: 100%;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:110;
+    }
+
+</style>
 Full Name : {{object.user.first_name}} {{object.user.last_name}}<br>
 NickName : {{object.user.nick_Name}}<br>
 Age : {{object.user.age}}<br>
 Profile : {{object.user.profile}}<br>
-Average Star : {{avgstar}}<br>
+Average Star : <h1><div style= "width:calc(20% * {{avgstar}}"></div>
+<img src = "{% static 'images/stars.png' %}"  title = "{{avgstar}}">
+</h1><br>
 
 
 
@@ -22,11 +51,35 @@ Average Star : {{avgstar}}<br>
     <form action="{% url 'tutor_comment' object.user.id %}" method="POST">
         {% csrf_token %}
         <input type="text" name="comment"  placeholder="Enter Your Comment For This Tutor">
-        <input type="int" name="star">
+        <div class="rate">
+            <input name="star" type="radio" id="star5"  value="5" />
+            <label for="star5" title="text">5 stars</label>
+
+            <input name="star" type="radio" id="star4"  value="4" />
+            <label for="star4" title="text">4 stars</label>
+
+            <input name="star" type="radio" id="star3"  value="3" />
+            <label for="star3" title="text">3 stars</label>
+
+            <input name="star" type="radio" id="star2"  value="2" />
+            <label for="star2" title="text">2 stars</label>
+
+            <input name="star" type="radio" id="star1"  value="1" />
+            <label for="star1" title="text">1 star</label>
             
-            
+        </div>
+ 
         <button type="submit">Submit</button>
             
     </form>
 {%endif%}
+
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Star rating using pure CSS</title>
+
+<body>
+  
+</body>
+
 {% endblock %}
