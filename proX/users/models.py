@@ -11,6 +11,7 @@ class User(AbstractUser):
     age = models.CharField(max_length=16)
     degree = models.CharField(max_length=20, default = '-')
     profile = models.TextField(max_length=512, default = "-")
+    profile_pic = models.ImageField(upload_to='static/users/profile', blank=True, null=True)
 
 
 
@@ -43,5 +44,5 @@ class Review(models.Model):
     student = models.ForeignKey(User, on_delete = models.CASCADE)
     comment = models.TextField()
     posted_on = models.DateField(default=timezone.now)
-    star = models.IntegerField(default = 0)
+    star = models.IntegerField(default = 0,)
     
