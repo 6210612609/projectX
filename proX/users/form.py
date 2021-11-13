@@ -78,8 +78,9 @@ class UpdateTutorForm(forms.ModelForm):
     nick_Name = forms.CharField(required=True)
     age = forms.CharField(required=True)
     profile = forms.CharField(required=True)
+    profile_pic = forms.ImageField(required=True)
     
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'nick_Name', 'age', 'profile']
+        fields = ['first_name', 'last_name', 'nick_Name', 'age', 'profile', 'profile_pic']
         
