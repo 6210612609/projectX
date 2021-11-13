@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class User(AbstractUser):
     is_student = models.BooleanField(default=False)
@@ -11,6 +12,7 @@ class User(AbstractUser):
     age = models.CharField(max_length=16)
     degree = models.CharField(max_length=20, default = '-')
     profile = models.TextField(max_length=512, default = "-")
+    profile_pic = models.ImageField(null = True, blank =True)
 
 
 
@@ -43,5 +45,5 @@ class Review(models.Model):
     student = models.ForeignKey(User, on_delete = models.CASCADE)
     comment = models.TextField()
     posted_on = models.DateField(default=timezone.now)
-    star = models.IntegerField(default = 0)
+    star = models.IntegerField(default = 0,)
     
