@@ -44,6 +44,16 @@ h2 {
   padding: 20px;
 }
 
+.comment {
+  display: flex;
+  align-items: left;
+  flex-direction: column; 
+  justify-content: left;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
