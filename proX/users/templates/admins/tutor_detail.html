@@ -1,6 +1,8 @@
 {% extends "main/layout.html" %}
 {% load static %}
-
+{% block profile %}
+<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
 
 {% block content %}
 
@@ -60,7 +62,7 @@ Average Star :  <div style="margin-left: 155px; margin-top: -27px;"><h1><div sty
     <img src = "{% static 'images/stars.png' %}"  title = "{{review.star}}"> </div><br>
     
     
-    <a  style="color: #ffffff; background-color: #56baed; border: #dddddd; " class="btn btn-primary btn-sm w3-large "href="{% url 'delete_review' object.user.id review.id %}">Delete This Comment!</a><br>
+    <a  style="color: #ffffff; background-color: tomato; border: #dddddd; " class="btn btn-primary btn-sm w3-large "href="{% url 'delete_review' object.user.id review.id %}">Delete This Comment!</a><br>
 {% endfor %}
 </div>
 
