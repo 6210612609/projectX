@@ -8,10 +8,11 @@
 <br>
 <h1 style="margin-left:0.5em;"><b>Profile</b><br></h1>
 <br>
-<h3 style="margin-left:1.5em;font-size:20px;"><li>Full Name : {{request.user}}</li></h3>
+<h3 style="margin-left:1.5em;font-size:20px;"><li>Full Name : {{request.user.first_name}} {{request.user.last_name}}</li></h3>
 <h3 style="margin-left:1.5em;font-size:20px;"><li>NickName : {{request.user.nick_Name}}</li></h3>
 <h3 style="margin-left:1.5em;font-size:20px;"><li>Age : {{request.user.age}}</li></h3>
 <h3 style="margin-left:1.5em;font-size:20px;"><li>Degree : {{ request.user.degree }}</li></h3>
+<img class "profile-pic" src="{{request.user.profile_pic.url}}">
 <br>
 <h3 style="margin-left:0.75em;font-size:30px;"><b>My Course</b></h3> 
 <br>

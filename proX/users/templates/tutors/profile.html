@@ -1,34 +1,76 @@
 
 
 {% extends "main/layout.html" %}
+{% load static %}
+
+
 
 {% block profile %}
 <a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
 
 {% block content %}
-<br>
-<h1 style="margin-left:0.5em;"><b>Profile</b><br></h1>
-<br>
-<h3 style="margin-left:1.5em;font-size:20px;"><li>Full Name : {{tutor.user}}</li></h3>
-<h3 style="margin-left:1.5em;font-size:20px;"><li>NickName : {{tutor.user.nick_Name}}</li></h3>
-<h3 style="margin-left:1.5em;font-size:20px;"><li>Age : {{tutor.user.age}}</li></h3>
-<h3 style="margin-left:1.5em;font-size:20px;"><li>Profile: {{ tutor.user.profile }}</li></h3>
-<h3 style="margin-left:1.5em;font-size:20px;"><li>Average Star : {{avgstar}}</li></h3>
-<br>
 
+<style>
+        h1{
+            width: 100px;
+            position: relative;
+        }
+    
+        h1 div{
+            background-color: gold;
+            width: 50%;
+            position:absolute;
+            top:0;
+            left:0;
+            height: 18px;
+            font-size: 20px;
+            z-index: 100;
+        }
+    
+        h1 img{
+            width: 100%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:110;
+        }
+         div.p {
+            width: 600px;
+            padding: 10px;
+            border: 2px solid #56baed;
+            margin-bottom: -30px;
+            border-radius: 7px ;
+        }
+    
+</style>
+
+<p style=" font-size: 40px; margin-left: 2%;" >Profile</p>
+
+<div style="margin-left: 5%; font-size: x-large;" >
+Full Name : {{tutor.user}}<br>
+NickName : {{tutor.user.nick_Name}}<br>
+Age : {{tutor.user.age}}<br>
+Profile: {{ tutor.user.profile }}<br>
+Average Star : <div style="margin-left: 155px; margin-top: -34px;"><h1><div style= "width:calc(20% * {{ avgstar }})"></div>
+        <img src = "{% static 'images/stars.png' %}"  title = "{{avgstar}}">
+        </h1></div><br>
+</div>
+<img class "profile-pic" src="{{request.user.profile_pic.url}}">
 <a style="margin-left:2%;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 't_profile_update' %}"><label>Update My Profile</label></a>
 
 
 <br>
 <br>
-<h1 style="margin-left:0.75em;font-size:28px;"><b>My Review</b><br></h1><br>
+<p style=" font-size: 30px; margin-left: 2%;" >My Review</p>
 <div style="margin-left:2%">
         
 {% for review in reviews %}
 <div class="comment fadeInDown" style="text-align: left;">
-        <h3 style="margin-top: -1em;">{{review.student.first_name}} {{review.student.last_name}}</h3>{{review.star}}/5<br>
-        {{review.comment}}
+        <p style ="font-weight: bold; font-size: 20px; margin-top: -30px;" >{{review.student.first_name}} {{review.student.last_name}}</p>
+        <div style="margin-left: 0px; margin-top: -8px;"><h1><div style= "width:calc(20% * {{ review.star }})"></div>
+                <img src = "{% static 'images/stars.png' %}"  title = "{{review.star}}"> </div><br>
+        <p style ="font-size : 18px; margin-top: -10px;margin-bottom: 0px;">{{review.comment}}</p>
         <hr>
 </div>
 {% endfor %}
