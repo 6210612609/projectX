@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 class User(AbstractUser):
     is_student = models.BooleanField(default=False)
@@ -11,7 +12,7 @@ class User(AbstractUser):
     age = models.CharField(max_length=16)
     degree = models.CharField(max_length=20, default = '-')
     profile = models.TextField(max_length=512, default = "-")
-    profile_pic = models.ImageField(upload_to='static/users/profile', blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='static/users/profile', default = "images/static/users/profile/profile2_suxx5z.png" , blank=True, null=True)
 
 
 

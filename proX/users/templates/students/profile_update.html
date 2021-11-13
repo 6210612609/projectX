@@ -6,7 +6,7 @@
 
 {% block content %}
 <h1>Update Your Profile</h1> <br>
-<form method="post" novalidate>
+<form method="post" action= "" enctype = "multipart/form-data">
         {% csrf_token %}
         <h2>First name</h2><br>
         {{u_form.first_name }}<br>
@@ -18,6 +18,8 @@
         {{u_form.age }}<br>
         <h2>Degree</h2><br>
         {{u_form.degree }}<br>
+        <h2>Profile Picture</h2><br>
+        {{u_form.profile_pic}}<br>
     <div style="margin-top:3em">
     <button type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue">Save changes</button>
     <a href="{% url 's_home' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red   w3-blue">Cancel</a>

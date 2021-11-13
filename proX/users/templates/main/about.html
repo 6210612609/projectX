@@ -1,16 +1,145 @@
 {% extends "main/layout.html" %}
 
-{% block title %}
-<h1> About </h1>
+{% load static %}
+{% block profile %}
+<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
 
-
 {% block body %}
-<li>นภทีป์ ละปะชัย  6210612609</li>
-<li>ปารินทร์ โสภิตลาภธนา  6210612740</li>
-<li>ปฤญจ์กาณฑ์ ดิษฐ์สมบูรณ์ 6210612781</li>
-<li>ปุณยวัจน์ เอี่ยมทวีสิน   6210612799</li>
-<li>ธาม พลศรีสุทธิกุล  6210612807</li><br>
-<a href = "https://github.com/6210612609/projectX">Github repository</a><br>
-<a href = "https://www.pivotaltracker.com/n/projects/2535971">Pivotal Tracker</a><br>
+<style>
+    
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 20%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: rgb(58, 194, 248);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+</style>
+</head>
+
+<body>
+    
+
+<h2 style="margin-left: 42%;">OUR PERFECT TEAM</h2>
+<hr>
+<br>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'images/ninja3.png' %}" alt="Ninja" style="width:100%">
+      <div class="container">
+
+        <h2>Parin S.</h2>
+        <p class="title">6210612740</p>
+        <p>มันแอบมายืนจู๊ยอยู่ตรงนี้</p>
+        
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'images/mek.png' %}" alt="mek" style="width:100%">
+      <div class="container">
+        <h2>Napatee L.</h2>
+        <p class="title">6210612609</p>
+        <p>ธามๆ มึงรู้จักคนนี้ป่ะ</p>
+        
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'images/prin2.jpg' %}" alt="prin" style="width:100%">
+      <div class="container">
+        <h2>Prinkarn D.</h2>
+        <p class="title">6210612781</p>
+        <p>แอบรักน้องดรีม</p>
+        
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'images/tharm.png' %}" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Tharm P.</h2>
+        <p class="title">6210612807</p>
+        <p>เดี๋ยวกูมานะเพื่อน</p>
+        
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'images/mc.jpg' %}" alt="mc" style="width:100%">
+      <div class="container">
+        <h2>Punyawat I.</h2>
+        <p class="title">6210612799</p>
+        <p>คนกลางหล่อสุด</p>
+        
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
 {% endblock %}
