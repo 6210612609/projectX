@@ -384,3 +384,4 @@ input[type=number]:placeholder {
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
 }
+
