@@ -12,7 +12,7 @@ class User(AbstractUser):
     age = models.CharField(max_length=16)
     degree = models.CharField(max_length=20, default = '-')
     profile = models.TextField(max_length=512, default = "-")
-    profile_pic = models.ImageField(null = True, blank =True)
+    profile_pic = models.ImageField(default = "profile2.png", null = True, blank =True)
 
 
 
