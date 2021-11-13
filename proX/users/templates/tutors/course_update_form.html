@@ -6,13 +6,14 @@
 
 
 {% block content %}
-{{ owners.name }}
+<h1>Course Name : {{ owners.name }}</h1>
+
 
 <form method="post" novalidate>
         {% csrf_token %}
         {{ form }}
-    <button type="submit" >Save changes</button>
-    <a href="{% url 't_home' %}" >Cancel</a>
-    <a href="{% url 'course_delete' owners.pk %}" >Delete</a>
+    <button type="submit" style="color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm ">Save changes</button>
+    <a href="{% url 't_home' %}"  style="color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm ">Cancel</a>
+    <a href="{% url 'course_delete' owners.pk %}" style="color: #ffffff; background-color: #ec150e; border: #dddddd;" class="btn btn-primary btn-sm " >Delete</a>
 </form>
 {% endblock %}

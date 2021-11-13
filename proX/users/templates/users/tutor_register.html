@@ -13,7 +13,7 @@
 {% load crispy_forms_tags %}
     <div style="text-align: center;">
     <body>
-        <h2 style="margin: 10px 8px 10px 8px;font-size: 55px;color: #5fbae9;" >Tutor Register</h2><br><br>
+        <h2 style="margin: 10px 8px 10px 8px;font-size: 55px;color: #5fbae9;" >Tutor Register</h2><br>
         <form action="{% url 'tutor_register' %}" method = "POST" class="form-group">
         {%csrf_token%}
             <input type="text" name="username" style="width: 415.5px;" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" placeholder="Username" class="textinput textInput form-control" required="" id="id_username">

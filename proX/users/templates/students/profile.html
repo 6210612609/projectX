@@ -18,9 +18,9 @@
     {% for course in courselist %}
     <a style="margin-left:1.5%;font-size:25px;padding-right:1%;" href="{% url 'course_detail' course.pk %}"><label>{{ course.name }}</label></a><br> 
     <a style="margin-left:2em;font-size:20px;">&#10060;</a>
-    <a style="margin-left:0%;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-red w3-blue" href="{% url 'course_cancel' course.pk %}">Cancel This Course</a> <br>
+    <a  style="margin-left:0%;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large" href="{% url 'course_cancel' course.pk %}">Cancel This Course</a> <br>
     <br>
     {% endfor %}
 <br>
-<a style="margin-left:3em;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green w3-blue" href="{% url 's_profile_update' %}">Update Profile &#128736;</a>
+<a style="margin-left:3em;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 's_profile_update' %}">Update Profile &#128736;</a>
 {% endblock %}

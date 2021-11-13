@@ -17,7 +17,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 div.c {
       text-align: right;
     }
-    
+
+    div.left {
+      text-align: left;
+    }
 </style>
 <body>
   
@@ -34,7 +37,8 @@ div.c {
     <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-white"style="margin-left:-25em;">  &#x1F3E0; Home</a>
     <a href="/list" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-17.5em;">&#128203; List</a>
     {% if request.user.is_authenticated %}
-      <span class="w3-right-align" style="color: white;margin-left: 47%;">&emsp;&emsp;Welcome, {{request.user.nick_Name}}</span>&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>
+      
+      <span  style="color: white;margin-left: 47%;">&emsp;&emsp;Welcome, {{request.user.nick_Name}}</span>&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>
       {% block profile %}
       {% endblock %}
     {%else%}
