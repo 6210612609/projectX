@@ -106,7 +106,7 @@ def ProfileView(request):
 
 def TutorUpdate(request):
     if request.method == 'POST':
-        user_form = UpdateTutorForm(request.POST, instance = request.user)
+        user_form = UpdateTutorForm(request.POST, request.FILES, instance = request.user)
 
         if user_form.is_valid():
             user_form.save()
