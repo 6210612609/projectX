@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users.views import main, students, tutors
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',include("users.urls")),
+    path('about/', main.about, name = 'about'),
     path('admin/', admin.site.urls),
     path('users/register/',main.register, name='register'),
     path('users/student_register/',students.student_register.as_view(), name='student_register'),
@@ -27,3 +29,5 @@ urlpatterns = [
     path('users/login/',main.login_request, name='login'),
     path('users/logout/',main.logout_view, name='logout'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -74,4 +74,7 @@ def CommentListView(request, tutor_id):
 def ReviewDelete(request, tutor_id, review_id):
     Review.objects.filter(id=review_id).delete()
     return HttpResponseRedirect(reverse("list_comment", args=(tutor_id,)))
+
+def about(request):
+    return render(request, '../templates/main/about.html') 
     
