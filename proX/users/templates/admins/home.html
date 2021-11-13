@@ -1,5 +1,22 @@
-<h1> Admin Home </h1><br>
+{% extends "main/layout.html" %}
+
+{% block profile %}
+<a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+<br>
+<h1 style="margin-left:0.5em;"><b> Admin Home &#x1F527; </b></h1><br>
+<h3 style="margin-left:1.5em;font-size:34px;">Tutor List </h3>
+<br>
 {% for t in tutor %}
-        <a href="{% url 'list_comment' t.pk %}" >{{ t.user.first_name }} {{ t.user.last_name }}</a> <br>
+        <a style="margin-left:2em;font-size:28px;text-decoration:none;" href="{% url 'list_comment' t.pk %}" > - {{ t.user.first_name }} {{ t.user.last_name }}</a><br> 
 {% endfor %}
-<a href="{% url 'logout' %}">Logout</a><br>
+
+
+{% endblock %}
