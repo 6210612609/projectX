@@ -35,7 +35,7 @@
         width: 600px;
         padding: 10px;
         border: 2px solid #56baed;
-        margin-bottom: 1px;
+        margin-bottom: -30px;
         border-radius: 7px ;
     }
 
@@ -54,8 +54,10 @@ Your Reviews
 {% for review in reviews %}
 <div class="comment fadeInDown" style="text-align: left;">
 <div class="p" >
-    {{review.student.first_name}} {{review.student.last_name}} <br>{{review.star}}/5<br>{{review.comment}} <br>
-    <br>
+    <p style ="font-weight: bold; font-size: 20px;" >{{review.student.first_name}} {{review.student.last_name}}</p> 
+    <div style="margin-left: 0px; margin-top: -8px;"><h1><div style= "width:calc(20% * {{ review.star }})"></div>
+        <img src = "{% static 'images/stars.png' %}"  title = "{{review.star}}"> </div>
+    <p style ="font-size : 18px; margin-top: 40px;margin-bottom: 0px;">{{review.comment}}</p> 
 </div>
 </div>    
 {% endfor %}
