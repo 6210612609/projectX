@@ -113,7 +113,7 @@ def ProfileView(request):
 
 def StudentUpdate(request):
     if request.method == 'POST':
-        user_form = UpdateStudentForm(request.POST, instance=request.user)
+        user_form = UpdateStudentForm(request.POST, request.FILES, instance=request.user)
         if user_form.is_valid:
             user_form.save()
             messages.success(request, 'Your profile is updated successfully')

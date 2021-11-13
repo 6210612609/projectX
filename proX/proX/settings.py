@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'crispy_forms',
+    'cloudinary_storage',
     'cloudinary',
+    
 ]
 
 MIDDLEWARE = [
@@ -143,8 +145,8 @@ django_heroku.settings(locals())
 
 DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
 
-cloudinary.config( 
-  cloud_name = "hel8n51v3", 
-  api_key = "449795434217714", 
-  api_secret = "yv9WGiXyhDHxnVfN6VaaL0BOp4Q" 
-)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : "hel8n51v3",
+    'API_SECRET' :  "yv9WGiXyhDHxnVfN6VaaL0BOp4Q",
+    'API_KEY' : "449795434217714"
+}
