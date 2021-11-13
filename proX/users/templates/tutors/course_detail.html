@@ -4,21 +4,23 @@
 {% endblock %}
 
 {% block content %}
-<div style="margin-left: 2%;">
-<h3>Course Name : {{ object.name }}<br></h3>
-<h3>Course Detail : {{ object.detail }}<br></h3>
-<h3>Course Amount : {{ object.amount }}<br></h3>
-<h3>Course Price : {{ object.price }} Baht/Hr.<br></h3>
+<br>
+<div style="margin-left: 2%;font-size:35px;">
+Course Name : {{ object.name }}<br>
+Course Detail : {{ object.detail }}<br>
+Course Amount : {{ object.amount }}<br>
+Course Price : {{ object.price }} Baht/Hr.<br>
 </div>
 <br><br>
-<div style="margin-left: 2%"> 
-    <h3>Your Student :</h3>
+<div style="margin-left:2%;"> 
+    <p style="font-size:40px;">Your Student &#127891; </p>
                           
     {% for s in students %}
     
-    <li><a href="{% url 'student_detail' s.id %}">{{ s.first_name }} {{ s.last_name }}</a></li>  <br>           
+    <a style="font-size:30px;text-decoration:none;margin-left:1.5%;" href="{% url 'student_detail' s.id %}">{{ s.first_name }} {{ s.last_name }}</a>  <br>           
     {% endfor %}
     <br>
     </div>
+    <br>
     <a href="{% url 'course_update' object.id %}" style="color: #ffffff; background-color: #56baed; border: #dddddd; margin-left: 2%; " class="btn btn-primary btn-sm w3-large " >Update &#x1F6E0;</a><br><br>
 {% endblock %}

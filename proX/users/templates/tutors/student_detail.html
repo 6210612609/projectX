@@ -4,9 +4,12 @@
 {% endblock %}
 
 {% block content %}
-Full Name : {{student.user.first_name}} {{student.last_name}}<br>
-NickName : {{student.user.nick_Name}}<br>
-Age : {{student.user.age}}<br>
-Degree : {{student.user.degree}}<br>
+<br>
+<h1 style="margin-left:0.5em;"><b>Student Profile</b></h1>
+<br>
+<h3 style="margin-left:1.5em;font-size:32px;">Full Name : {{student.user.first_name}} {{student.last_name}}</h3>
+<h3 style="margin-left:1.5em;font-size:32px;">NickName : {{student.user.nick_Name}}</h3>
+<h3 style="margin-left:1.5em;font-size:32px;">Age : {{student.user.age}}</h3>
+<h3 style="margin-left:1.5em;font-size:32px;">Degree : {{student.user.degree}}</h3>
 
 {% endblock %}
