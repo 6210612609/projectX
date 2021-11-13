@@ -82,5 +82,5 @@ class UpdateTutorForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'nick_Name', 'age', 'degree', 'profile_pic']
+        fields = ['first_name', 'last_name', 'nick_Name', 'age', 'profile', 'profile_pic']
         
