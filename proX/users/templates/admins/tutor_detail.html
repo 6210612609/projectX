@@ -1,15 +1,69 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    h1{
+        width: 100px;
+        position: relative;
+    }
+
+    h1 div{
+        background-color: gold;
+        width: 50%;
+        position:absolute;
+        top:0;
+        left:0;
+        height: 18px;
+        font-size: 20px;
+        z-index: 100;
+    }
+
+    h1 img{
+        width: 100%;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:110;
+    }
+     div.p {
+        width: 600px;
+        padding: 10px;
+        border: 2px solid #492212;
+        margin-bottom: 1px;
+        border-radius: 7px ;
+    }
+
+</style>
+
+
+<div style="margin-left: 2%; font-size: x-large;" >
 Full Name : {{object.user}}<br>
 NickName : {{object.user.nick_Name}}<br>
 Age : {{object.user.age}}<br>
 Profile : {{object.user.profile}}<br>
-Average Star : {{avgstar}}<br>
+Average Star :  <div style="margin-left: 155px; margin-top: -27px;"><h1><div style= "width:calc(20% * {{ avgstar }})"></div>
+                    <img src = "{% static 'images/stars.png' %}"  title = "{{avgstar}}"><br></div>            
 
 
 
-<br>
-{% for review in reviews %}
-    {{review.student.first_name}} {{review.student.last_name}} {{review.comment}} {{review.star}}/5
-    <a href="{% url 'delete_review' object.user.id review.id %}">Delete This Comment!</a><br>
+<p style ="font-weight: bold; font-size: larger;" >Reviews:</p>
+<div style="font-size: large ; margin-left: 20px;">
+
+    {% for review in reviews %}
+    <label><p style ="font-weight: bold; font-size: 20px;" >{{review.student.first_name}} 
+    {{review.student.last_name}} : </p></label>
+    {{review.comment}} <br>
+    <div style="margin-left: 0px; margin-top: -20px;"><h1><div style= "width:calc(20% * {{ review.star }})"></div>
+    <img src = "{% static 'images/stars.png' %}"  title = "{{review.star}}"> </div><br>
+    
+    
+    <a  style="color: #ffffff; background-color: #56baed; border: #dddddd; " class="btn btn-primary btn-sm w3-large "href="{% url 'delete_review' object.user.id review.id %}">Delete This Comment!</a><br>
 {% endfor %}
+</div>
 
-<a href="{% url 'a_home' %}">Home</a>
+</div>
+
+{% endblock %}
