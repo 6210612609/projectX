@@ -144,11 +144,6 @@ class UserViewTestCase(TestCase):
             'age': '12',
             'profile': 'user3_degree'
         }
-        form = TutorSignUpForm(data=form_data)
-        if(form.is_valid):
-            tutor = Tutor.objects.create(user=user)
-            tutor.save()
-            form.save()
         c = Client()
         c.force_login(user)
         responses = c.post(reverse('tutor_register'), form_data)
@@ -422,6 +417,14 @@ class TutorViewTestCase(TestCase):
         c.force_login(user)
         response = c.get(reverse('t_profile'))
         self.assertEqual(response.status_code, 200)
+    
+    def test_tutor_view_student(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        c.force_login(user)
+        response = c.get(reverse('student_detail'))
+        self.assertEqual(response.status_code, 200)
+        
 
 class AdminViewTestCase(TestCase):
 
@@ -474,4 +477,6 @@ class AdminViewTestCase(TestCase):
         c.force_login(user)
         response = c.post(reverse('delete_review', args=(tutor.id, review.id)))
         self.assertEqual(response.status_code, 302)
+    
+
     
