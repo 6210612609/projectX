@@ -26,18 +26,12 @@
 <a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
 
-{% block title %}
-<h1> Tutor Home </h1>
-<h3>{{request.user}} <br></h3>
-{% endblock %}
-
-
 {% block body %}
     <br>
     <h2 style="margin-left:2em;"> Tutor Home </h2>
     <ul>
         <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;" >Username: {{ request.user.username }}</li>
-        <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;">Name: {{ request.user.nick_Name }}  {{ request.user.last_name }}</li>
+        <li style="color:black;margin-left:3.5em;font-size:20px; list-style: none;">Name: {{ request.user.first_name }}  {{ request.user.last_name }}</li>
     </ul>
 
 
