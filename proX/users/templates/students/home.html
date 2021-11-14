@@ -10,6 +10,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
+  
 }
 
 tr:nth-child(even) {
@@ -46,23 +47,25 @@ tr:nth-child(even) {
     <br>
     
     
-    <table style="margin-left:5em; font-size:18px; ">
-        <tr>
-            <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
-            <th style="background-color:#dddddd;" width=180px;>Course Name</th>
-            <th style="background-color:#dddddd;" width=200px;>Course Detail</th>
-            <th style="background-color:#dddddd;" width=180px;>Course Owner</th>
+    <table style="margin-left:15%; font-size:18px; ">
+        <tr height=40px;>
+            <th style="text-align:center;background-color:#dddddd;" width=100px;>Course ID</th>
+            <th style="background-color:#dddddd;text-align: center;" width=180px;>Course Name</th>
+            <th style="background-color:#dddddd;text-align: center;" width=400px;>Course Detail</th>
+            <th style="background-color:#dddddd;text-align: center;" width=180px;>Course Owner</th>
+            <th style="background-color:#dddddd;text-align: center;" width=80px;>Price</th>
         </tr>
            
             {% for course in courselist %}
-            <tr>
-                <td style="text-align:center;">{{course.id}}</td>
-                <td><a style="text-decoration:none;" href="{% url 'course_detail' course.id %}">{{course.name}}</a></td>
+
+            <tr height=80px;>
+                <td style="text-align:center;text-align: center;">{{course.id}}</td>
+                <td style="text-align: center;"><a style="text-decoration:none;" href="{% url 'course_detail' course.id %}">{{course.name}}</a></td>
                 <td>{{course.detail}}</td>
-                <td>{{course.owner}}</td>
+                <td style="text-align: center;">{{course.owner}}</td>
+                <td style="text-align: center;">{{course.price}}</td>
+                
             </tr>
-            
-            
             {% endfor %}
     </table>
 

@@ -38,7 +38,7 @@ div.c {
     <a href="/list" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-17.5em;">&#128203; List</a>
     {% if request.user.is_authenticated %}
       
-      <span  style="color: white;margin-left: 47%;">&emsp;&emsp;Welcome, {{request.user.nick_Name}}</span>&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>
+      <span  style="color: white;margin-left: 45%;">&emsp;Welcome, {{request.user.nick_Name}}</span>&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>
       {% block profile %}
       {% endblock %}
     {%else%}

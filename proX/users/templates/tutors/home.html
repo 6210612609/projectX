@@ -37,20 +37,21 @@
 
     <a style="margin-left:7em;  color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " href="{% url 'make_course' %}">Make Course &#x1F4DA;</a><br>
     <br>
-    <table style="margin-left:5em; font-size:18px; ">
-        <tr>
-            <th style="text-align:center;background-color:#dddddd;" width=150px;>Course ID</th>
-            <th style="background-color:#dddddd;" width=180px;>Course Name</th>
-            <th style="background-color:#dddddd;" width=200px;>Course Detail</th>
-            <th style="background-color:#dddddd;" width=180px;>Amount</th>
+    <table style="margin-left:20%; font-size:18px;">
+        <tr height=40px;>
+            <th style="text-align:center;background-color:#dddddd;" width=100px;>Course ID</th>
+            <th style="background-color:#dddddd;text-align: center;" width=180px;>Course Name</th>
+            <th style="background-color:#dddddd;text-align: center;" width=400px;>Course Detail</th>
+            <th style="background-color:#dddddd;text-align: center;" width=80px;>Count</th>
+
         </tr>
        
         {% for course in owners %}
-        <tr>
+        <tr height=80px;>
             <td style="text-align:center;">{{course.id}}</td>
-            <td><a style="text-decoration:none;" href="{% url 't_course_detail' course.pk %}">{{course.name}}</a></td>
+            <td style="text-align: center;"><a style="text-decoration:none;" href="{% url 't_course_detail' course.pk %}">{{course.name}}</a></td>
             <td>{{course.detail}}</td>
-            <td>{{course.amount}}</td>
+            <td style="text-align: center;">{{course.count}}</td>
         </tr>
         {% endfor %}
     </table>
