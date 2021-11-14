@@ -5,6 +5,7 @@
 
 
 {% block content %}
+<div style="text-align: center;">
 <h1>Update Your Profile</h1> <br>
 <form method="post" action= "" enctype = "multipart/form-data">
         {% csrf_token %}
@@ -26,5 +27,5 @@
     </div> 
 
 </form>
-
+</div>
 {% endblock %}
