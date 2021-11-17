@@ -38,7 +38,7 @@ div.c {
     <br>
     <br>
     <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-white"style="margin-left:-25em;">  &#x1F3E0; Home</a>
-    <a href="/list" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-17.5em;">&#128203; List</a>
+    
     {% if request.user.is_authenticated %}
       
       <span  style="color: white;margin-left: 45%;">&emsp;Welcome, {{request.user.nick_Name}}</span>&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>
@@ -46,10 +46,10 @@ div.c {
       {% endblock %}
     {%else%}
     <span class="w3-right-align" style="color: white;margin-left: 47%;">&emsp;You are not login.</span> <a href="{% url 'login' %}"><img style="width:25px;height:25px ;" src="{% static 'images/login.png' %}"></a>
-      <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a> 
+      <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-white"style="margin-left:-18.5em;">&#129299;Profile</a> 
     {%endif%}
     
-    <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-4.5em;">&#128101;About</a>
+    <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#128101;About</a>
     
   </div>
   <div style="margin-bottom: 1em;"></div>
