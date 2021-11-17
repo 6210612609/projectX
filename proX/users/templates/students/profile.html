@@ -21,9 +21,9 @@ div.p {
 </style>
 
 
-
-<a style="margin-left:1em; font-size: 40px; ">Profile<br></a>
-<br><br><br>
+<br>
+<a style="margin-left:1em; font-size: 40px; ">Profile</a><a style="margin-left:2%;background-color: #56baed;color: white;border-radius: 10px;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 's_profile_update' %}"><label>Update My Profile</label></a>
+<br><br><br><br>
     <div class = "p" >
         <img style="border-radius: 15px ;" class = "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
     </div>
@@ -34,9 +34,9 @@ NickName : {{request.user.nick_Name}}<br>
 Age : {{request.user.age}}<br>
 Degree : {{ request.user.degree }}<br>
 </div>
+
+
 <br><br><br><br><br>
-
-
 
 <a style="margin-left:2%; font-size: 40px; ">My Course</a> 
 <br><br>
@@ -47,5 +47,5 @@ Degree : {{ request.user.degree }}<br>
     <br>
     {% endfor %}
 <br>
-<a style="border-radius: 15px ;margin-left:3em;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 's_profile_update' %}">Update Profile &#128736;</a>
+
 {% endblock %}
