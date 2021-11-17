@@ -1,19 +1,27 @@
 {% extends "main/layout.html" %}
+<style>
 
+</style>
 {% block profile %}
 <a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-18.5em;">&#129299;Profile</a>
 {% endblock %}
 
 
 {% block content %}
-<h1>Course Name : {{ owners.name }}</h1>
-
-
+<div style="text-align:center;font-size:28px;">
+<br>
+<h4 style="font-size:50px;"><b>Course Edit &#128736; : {{ object.name }} </b></h4>
+<br>
 <form method="post" novalidate>
         {% csrf_token %}
-        {{ form }}
-    <button type="submit" style="color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm ">Save changes</button>
-    <a href="{% url 't_home' %}"  style="color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm ">Cancel</a>
-    <a href="{% url 'course_delete' owners.pk %}" style="color: #ffffff; background-color: #ec150e; border: #dddddd;" class="btn btn-primary btn-sm " >Delete</a>
+        Name : {{ form.name }}<br><br>
+        Detail : {{ form.detail }}<br><br>
+        Amount : {{ form.amount }}
+        Price : {{ form.price }}<br>
+    <br>
+    <button type="submit" style="width:100px;border-radius: 5px 5px 5px 5px;color: #ffffff; background-color: #32CD32; border: #dddddd;" class="btn btn-primary btn-sm ">Save</button>
+    <a href="{% url 't_home' %}"  style="width:100px;border-radius: 5px 5px 5px 5px;color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm ">Cancel</a>
+    <a href="{% url 'course_delete' owners.pk %}" style="width:100px;border-radius: 5px 5px 5px 5px;color: #ffffff; background-color: #FF6347; border: #dddddd;" class="btn btn-primary btn-sm " >Delete</a>
 </form>
+</div>
 {% endblock %}
