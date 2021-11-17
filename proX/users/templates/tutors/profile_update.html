@@ -5,27 +5,22 @@
 {% endblock %}
 
 {% block content %}
-
-<div style="text-align: center;">
-<form method="post" action= "" enctype = "multipart/form-data">
-    <h1>Update your Tutor profile</h1> <br>
+    <div style="text-align: center;">
+        <form method="post" action= "" enctype = "multipart/form-data">
+        <br><h1>Update your profile</h1> <br>
         {% csrf_token %}
 
-        <h2>First name</h2><br>
-        {{form.first_name }}<br>
-        <h2>Last name</h2><br>
-        {{form.last_name }}<br>
-        <h2>Nick name</h2><br>
-        {{form.nick_Name }}<br>
-        <h2>age</h2><br>
-        {{form.age }}<br>
-        <h2>Profile</h2><br>
-        {{form.profile}}<br>
-        <h2>Profile Picture</h2><br>
+        <h4>First name : {{form.first_name }}</h4>
+        <h4>Last name : {{form.last_name }}</h4>
+        <h4>Nickname : {{form.nick_Name }}</h4>
+        <h4>&emsp;&emsp;&emsp;age : {{form.age }}</h4>
+        <h4> &emsp; Profile : {{form.profile }}</h4>
+        
+        <h3>Profile Picture</h3>
         {{form.profile_pic}}<br>
     <div style="margin-top:3em">
-    <button type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue">Save changes</button>
-    <a href="{% url 't_home' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-green   w3-blue" >Cancel</a>
+    <button type="submit" style="border-radius: 10px;background-color: #56baed;color: rgb(255, 255, 255);" class="w3-button w3-hide-small w3-padding-large">Save changes</button>
+    <a href="{% url 't_home' %}" style="border-radius: 10px;background-color: #56baed;color: rgb(255, 255, 255);" class="w3-button w3-hide-small w3-padding-large " >Cancel</a>
     </div> 
 </form>
 </div>

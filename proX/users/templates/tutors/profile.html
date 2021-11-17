@@ -60,7 +60,7 @@
         }
     
 </style>
-
+<br>
 <a style="margin-left:1em; font-size: 40px; ">Profile<br></a>
 <br>
     <div class = "pic" >
@@ -68,7 +68,7 @@
     </div>
 
 <div style="margin-left: 350px; margin-top: -225px; font-size: 25px;" >
-Full Name : {{tutor.user}}<br>
+Full Name : {{tutor.user.first_name}} {{tutor.user.last_name}}<br>
 NickName : {{tutor.user.nick_Name}}<br>
 Age : {{tutor.user.age}}<br>
 Profile: {{ tutor.user.profile }}<br>
@@ -77,7 +77,7 @@ Average Star : <div style="margin-left: 155px; margin-top: -34px;"><h1><div styl
         </h1></div><br>
 </div>
 <br><br><br>
-<a style="margin-left:2%;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 't_profile_update' %}"><label>Update My Profile</label></a>
+<a style="margin-left:2%;background-color: #56baed;color: white;border-radius: 10px;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 't_profile_update' %}"><label>Update My Profile</label></a>
 
 
 <br>
