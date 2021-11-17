@@ -13,41 +13,61 @@
 
 <style>
         h1{
-            width: 100px;
-            position: relative;
+
+                width: 100px;
+                position: relative;
         }
     
         h1 div{
-            background-color: gold;
-            width: 50%;
-            position:absolute;
-            top:0;
-            left:0;
-            height: 18px;
-            font-size: 20px;
-            z-index: 100;
+
+                background-color: gold;
+                width: 50%;
+                position:absolute;
+                top:0;
+                left:0;
+                height: 18px;
+                font-size: 20px;
+                z-index: 100;
         }
     
         h1 img{
-            width: 100%;
-            position:absolute;
-            top:0;
-            left:0;
-            z-index:110;
+
+                width: 100%;
+                position:absolute;
+                top:0;
+                left:0;
+                z-index:110;
         }
          div.p {
-            width: 600px;
-            padding: 10px;
-            border: 2px solid #56baed;
-            margin-bottom: -30px;
-            border-radius: 7px ;
+
+                width: 600px;
+                padding: 10px;
+                border: 2px solid #56baed;
+                margin-bottom: -30px;
+                border-radius: 7px ;
+        }
+        
+        div.pic {
+
+                margin-top: -5px;
+                margin-left: 50px;
+                width: 255px;
+                padding: 0px;
+                border: 2px solid #0e1b22;
+                margin-bottom: -30px;
+                border-radius: 15px ;
+
         }
     
 </style>
 
 <p style=" font-size: 40px; margin-left: 2%;" >Profile</p>
 
-<div style="margin-left: 5%; font-size: x-large;" >
+<div class = "pic" >
+        <img class "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
+</div>
+
+<div style="margin-left: 18%; margin-top: -12%; font-size: 25px;" >
 Full Name : {{tutor.user}}<br>
 NickName : {{tutor.user.nick_Name}}<br>
 Age : {{tutor.user.age}}<br>
@@ -56,8 +76,12 @@ Average Star : <div style="margin-left: 155px; margin-top: -34px;"><h1><div styl
         <img src = "{% static 'images/stars.png' %}"  title = "{{avgstar}}">
         </h1></div><br>
 </div>
+<<<<<<< HEAD
 {{avgstar}}
 <img class "profile-pic" src="{{request.user.profile_pic.url}}">
+=======
+<br><br><br>
+>>>>>>> refs/remotes/origin/master
 <a style="margin-left:2%;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 't_profile_update' %}"><label>Update My Profile</label></a>
 
 

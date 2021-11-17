@@ -15,3 +15,4 @@ urllib3==1.26.7
 whitenoise==5.3.0
 gunicorn
 django-cloudinary-storage
+Pillow

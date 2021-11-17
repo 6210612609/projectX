@@ -45,7 +45,7 @@ class CourseCreateView(CreateView):
         course.owner = self.request.user
         course.save()
         messages.success(self.request, 'Course added Success')
-        return redirect('index')
+        return redirect('t_home')
 
 
 class CourseUpdateView(UpdateView):

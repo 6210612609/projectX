@@ -146,7 +146,7 @@ class UserViewTestCase(TestCase):
         }
         c = Client()
         c.force_login(user)
-        responses = c.post(reverse('tutor_register'), form_data)
+        responses = c.post(reverse('index'), form_data)
         self.assertEqual(responses.status_code, 302)
 
 
@@ -305,12 +305,6 @@ class TutorViewTestCase(TestCase):
     
     #TEST TUTOR
     #index tutor   
-    def test_tutor_index_view_without_authentication(self):
-        c = Client()
-        user = User.objects.get(username='tutor1')
-        response = c.get(reverse('t_home'))
-        self.assertEqual(response.status_code, 200)
-    
     def test_tutor_index_view_with_authentication(self):
         c = Client()
         user = User.objects.get(username='tutor1')
@@ -425,6 +419,36 @@ class TutorViewTestCase(TestCase):
         response = c.get(reverse('student_detail'))
         self.assertEqual(response.status_code, 200)
         
+
+    def test_tutor_view_student(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        c.force_login(user)
+        student = Student.objects.create(user = User.objects.get(username='student1'))
+        response = c.get(reverse('student_detail', args=(student.pk,)))
+        self.assertEqual(response.status_code, 200)    
+
+    def test_tutor_view_student_without_auth(self):
+        c = Client()
+        student = Student.objects.create(user = User.objects.get(username='student1'))
+        response = c.get(reverse('student_detail', args=(student.pk,)))
+        self.assertEqual(response.status_code, 302)
+
+    def test_course_detail(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        c.force_login(user)
+        course = Course.objects.create(owner = User.objects.get(username='tutor1'), name = 'course1', detail = 'detail1')
+        response = c.get(reverse('t_course_detail', args=(course.pk,)))
+        self.assertEqual(response.status_code, 200)
+
+    def test_course_delete(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        c.force_login(user)
+        course = Course.objects.create(owner = User.objects.get(username='tutor1'), name = 'course1', detail = 'detail1')
+        response = c.get(reverse('course_delete', args=(course.pk,)))
+        self.assertEqual(response.status_code, 200)
 
 class AdminViewTestCase(TestCase):
 

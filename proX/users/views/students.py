@@ -66,7 +66,7 @@ def TutorDetailView(request, tutor_id):
         sumstar += s.star
         num += 1
     if (num == 0):
-        avgstar = "No review yet"
+        avgstar = 0
     else:
         avgstar = sumstar/num
         avgstar = "{:.1f}".format(avgstar)
