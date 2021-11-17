@@ -21,6 +21,8 @@ div.c {
     div.left {
       text-align: left;
     }
+
+
 </style>
 <body>
   
@@ -47,9 +49,8 @@ div.c {
     {%endif%}
     
     <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-4.5em;">&#128101;About</a>
-    
   </div>
-  <div style="margin-bottom: 1em;"></div>
+
   {% block content %}
   {% endblock %}
 
