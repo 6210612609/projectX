@@ -411,6 +411,14 @@ class TutorViewTestCase(TestCase):
         c.force_login(user)
         response = c.get(reverse('t_profile'))
         self.assertEqual(response.status_code, 200)
+    
+    def test_tutor_view_student(self):
+        c = Client()
+        user = User.objects.get(username='tutor1')
+        c.force_login(user)
+        response = c.get(reverse('student_detail'))
+        self.assertEqual(response.status_code, 200)
+        
 
     def test_tutor_view_student(self):
         c = Client()
@@ -493,4 +501,6 @@ class AdminViewTestCase(TestCase):
         c.force_login(user)
         response = c.post(reverse('delete_review', args=(tutor.id, review.id)))
         self.assertEqual(response.status_code, 302)
+    
+
     
