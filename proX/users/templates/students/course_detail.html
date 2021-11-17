@@ -10,11 +10,11 @@
 
 <br>
 <h3 style="text-align:center;font-size:50px;"><b>{{ object.name }}</b></h3>
-<h3 style="margin-top:-1em;text-align:center;font-size:20px;"><a style="text-decoration: none;" href="{% url 'tutor_detail' object.owner.pk %}">{{ object.owner }}</a></h3>
+<h3 style="text-align:center;font-size:20px;"><a style="text-decoration: none;" href="{% url 'tutor_detail' object.owner.pk %}">{{ object.owner.first_name }} {{ object.owner.last_name }} ({{ object.owner.nick_Name }})</a></h3>
 <br>
 
 <div style = "text-align:center; ">
-<li style="display:inline">Amount : {{ object.amount }} &emsp;&emsp;&emsp;&emsp;</li></h3>   
+<li style="display:inline;font-size: 1.3vw;">Amount : {{ object.count }}/{{ object.amount }} &emsp;&emsp;&emsp;&emsp;</li></h3>   
 <li style="display:inline">Price : {{ object.price }} Baht/Hr.</li></h3>
 <br><br>
 <h3 style="font-size:20px;"><p>{{ object.detail }}</p></h3>

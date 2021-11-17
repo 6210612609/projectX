@@ -36,7 +36,6 @@ def CourseListView(request):
             if request.user not in c.students.all():
                 courselist.append(c) 
     return render(request, "../templates/students/home.html", {
-        "courses": Course.objects.all() ,
         "courselist": courselist,
         "check_search": check_search,
         "search" : search

@@ -43,7 +43,28 @@ def index(request):
         else:
             return redirect('s_home')
     else:        
-        return render(request, '../templates/main/index.html')
+        courselist = []
+        availablecourse = []
+        for i in Course.objects.all():
+            if (i.count < i.amount):
+                courselist.append(i)
+        check_search = False
+        search = ''
+        
+        if request.method == "POST":
+            search = request.POST["search"]
+            check_search = True
+            for c in courselist:
+                if c.search(search):
+                    availablecourse.append(c)
+        else:
+            for c in courselist:
+                availablecourse.append(c) 
+        return render(request, "../templates/main/index.html", {
+            "courselist": availablecourse,
+            "check_search": check_search,
+            "search" : search
+        })
         
 def TutorListView(request):
     tutor = Tutor.objects.all()
