@@ -2,14 +2,37 @@
 {% block profile %}
 <a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
 {% endblock %}
+{% block body %}
+<style>
 
+    div.p {
+            margin-top: -35px;
+            margin-left: 50px;
+            width: 255px;
+            padding: 0px;
+            border: 2px solid #0e1b22;
+            margin-bottom: -30px;
+            border-radius: 15px ;
+        }
+    
+    
+    </style>
+{% endblock %}
 {% block content %}
-<br>
-<h1 style="margin-left:0.5em;"><b>Student Profile</b></h1>
-<br>
-<h3 style="margin-left:1.5em;font-size:32px;">Full Name : {{student.user.first_name}} {{student.last_name}}</h3>
-<h3 style="margin-left:1.5em;font-size:32px;">NickName : {{student.user.nick_Name}}</h3>
-<h3 style="margin-left:1.5em;font-size:32px;">Age : {{student.user.age}}</h3>
-<h3 style="margin-left:1.5em;font-size:32px;">Degree : {{student.user.degree}}</h3>
+
+<a style="margin-left:1em; font-size: 40px; ">Profile<br></a>
+<br><br><br>
+    <div class = "p" >
+        <img style="border-radius: 15px ;" class = "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
+    </div>
+
+<div style="margin-left: 350px; margin-top: -200px; font-size: 25px;" >
+Full Name : {{student.user.first_name}} {{student.last_name}}<br>
+NickName : {{student.user.nick_Name}}<br>
+Age : {{student.user.age}}<br>
+Degree : {{student.user.degree}}<br>
+</div>
+
+
 
 {% endblock %}

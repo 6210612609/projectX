@@ -61,13 +61,13 @@
     
 </style>
 
-<p style=" font-size: 40px; margin-left: 2%;" >Profile</p>
+<a style="margin-left:1em; font-size: 40px; ">Profile<br></a>
+<br>
+    <div class = "pic" >
+        <img style="border-radius: 15px ;" class = "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
+    </div>
 
-<div class = "pic" >
-        <img class "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
-</div>
-
-<div style="margin-left: 18%; margin-top: -12%; font-size: 25px;" >
+<div style="margin-left: 350px; margin-top: -225px; font-size: 25px;" >
 Full Name : {{tutor.user}}<br>
 NickName : {{tutor.user.nick_Name}}<br>
 Age : {{tutor.user.age}}<br>

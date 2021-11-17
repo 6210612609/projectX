@@ -10,11 +10,21 @@
 {% endblock %}
 
 {% block body %}
-<h1> Make course </h1>
+<div style="text-align: center;">
+<br>
+<h3 style="font-size: 40px;"><b> Make Course &#x1F4DA; </b></h3>
+<br>
 <form action="{% url 'make_course' %}" method="post" novalidate>
         {% csrf_token %}
-        {{form}}
-        <br><button type="submit" style="color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " >Save</button>
-        <a href="{% url 't_home' %}" style="color: #ffffff; background-color: #cfcfcf; border: #dddddd;" class="btn btn-primary btn-sm w3-hover-black " >Nevermind</a>
+        <input style="width:420px;" type="text" name="name" maxlength="200" autocapitalize="none" autocomplete="name" autofocus="" placeholder="Name" class="textinput textInput form-control" required="" id="name">
+        <br>
+        <input style="width:420px;margin-top: 8px;" type="text" name="detail" maxlength="200" autocapitalize="none" autocomplete="detail" autofocus="" placeholder="Detail" class="textinput textInput form-control" required="" id="detail">
+        <br>
+        <input style="width:210px;margin-top: 8px;" type="text" name="amount" maxlength="200" autocapitalize="none" autocomplete="amount" autofocus="" placeholder="Amount" class="textinput textInput form-control" required="" id="amount">
+        <input style="width:210px;margin-top: 8px;" type="text" name="price" maxlength="200" autocapitalize="none" autocomplete="price" autofocus="" placeholder="Price" class="textinput textInput form-control" required="" id="price">
+        <br>
+        <br><button type="submit" style="width:100px;border-radius: 5px 5px 5px 5px;color: #ffffff; background-color: #56baed; border: #dddddd;" class="btn btn-primary btn-sm " >Save &#128190;</button>
+        <a href="{% url 't_home' %}" style="width:100px;border-radius: 5px 5px 5px 5px;color: #ffffff; background-color: #FF6347; border: #dddddd;" class="btn btn-primary btn-sm  " >Nevermind &#10006;</a>
 </form>
+</div>
 {% endblock %}

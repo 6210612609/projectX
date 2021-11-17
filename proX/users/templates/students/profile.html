@@ -21,14 +21,18 @@ div.p {
 </style>
 
 
-<br>
+
 <a style="margin-left:1em; font-size: 40px; ">Profile<br></a>
 <br><br><br>
     <div class = "p" >
-        <img class "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
+        <img style="border-radius: 15px ;" class = "profile-pic" src="{{request.user.profile_pic.url}}"width="250"  height="250">
     </div>
 
+<<<<<<< HEAD
 <div style="margin-left: 350px ; margin-top: -200px; font-size: 25px;" >
+=======
+<div style="margin-left: 350px; margin-top: -200px; font-size: 25px;" >
+>>>>>>> refs/remotes/origin/master
 Full Name : {{request.user.first_name}} {{request.user.last_name}}<br>
 NickName : {{request.user.nick_Name}}<br>
 Age : {{request.user.age}}<br>
@@ -39,14 +43,13 @@ Degree : {{ request.user.degree }}<br>
 
 
 <a style="margin-left:2%; font-size: 40px; ">My Course</a> 
-<br>
+<br><br>
 
     {% for course in courselist %}
-    <a style="margin-left:2%;font-size:25px;padding-right:1%;" href="{% url 'course_detail' course.pk %}"><label>{{ course.name }}</label></a><br> 
-    <a style="margin-left:3%;font-size:20px;">&#10060;</a>
-    <a  style="margin-left:0%;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large" href="{% url 'course_cancel' course.pk %}">Cancel This Course</a> <br>
+    <a style="margin-left:2%;font-size:25px;padding-right:1%;" href="{% url 'course_detail' course.pk %}"><label>{{ course.name }}</label></a>
+    <a  style="margin-left:0%;background-color: tomato;border-radius: 15px ;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding" href="{% url 'course_cancel' course.pk %}">Cancel This Course</a> <br>
     <br>
     {% endfor %}
 <br>
-<a style="margin-left:3em;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 's_profile_update' %}">Update Profile &#128736;</a>
+<a style="border-radius: 15px ;margin-left:3em;background-color: #56baed;color: white;" class="w3-bar-item w3-button w3-hide-small w3-padding-large " href="{% url 's_profile_update' %}">Update Profile &#128736;</a>
 {% endblock %}

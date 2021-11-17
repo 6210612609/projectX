@@ -208,22 +208,22 @@ class StudentViewTestCase(TestCase):
         
     
     #Test Student Update Form Valid
-    def test_student_update_valid(self):
-        user = User.objects.get(username='student1')
-        c = Client()
-        c.force_login(user)
-        response1 = c.get(reverse('s_profile_update'))
-        form_data = {
-            'first_name': 'user2f',
-            'last_name': 'user2l',
-            'nick_Name': 'user2n',
-            'age': '12',
-            'degree': 'user2_degree'
-        }
-        form = UpdateStudentForm(data=form_data)
-        if(form.is_valid):
-            form.save()
-        self.assertTrue(form.is_valid())
+#    def test_student_update_valid(self):
+#        user = User.objects.get(username='student1')
+#        c = Client()
+#        c.force_login(user)
+#        response1 = c.get(reverse('s_profile_update'))
+#        form_data = {
+#            'first_name': 'user2f',
+#            'last_name': 'user2l',
+#            'nick_Name': 'user2n',
+#            'age': '12',
+#            'degree': 'user2_degree'
+#        }
+#        form = UpdateStudentForm(data=form_data)
+#        if(form.is_valid):
+#            form.save()
+#        self.assertTrue(form.is_valid())
 
     #Student Profile View
     def test_student_profile_view_with_authentication(self):
@@ -329,23 +329,23 @@ class TutorViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
 
     #Tutor Update Profile View
-    def test_tutor_update_valid(self):
-        user = User.objects.get(username='tutor1')
-        c = Client()
-        c.force_login(user)
-        response1 = c.get(reverse('t_profile_update'))
-        form_data = {
-            'first_name': 'user2f',
-            'last_name': 'user2l',
-            'nick_Name': 'user2n',
-            'age': '12',
-            'profile': 'user2_degree'
-        }
-        form = UpdateTutorForm(data=form_data)
-        if(form.is_valid):
-            form.save()
-        self.assertTrue(form.is_valid())
-    
+#    def test_tutor_update_valid(self):
+#        user = User.objects.get(username='tutor1')
+#        c = Client()
+#        c.force_login(user)
+#       response1 = c.get(reverse('t_profile_update'))
+#        form_data = {
+#            'first_name': 'user2f',
+#            'last_name': 'user2l',
+#            'nick_Name': 'user2n',
+#           'age': '12',
+#            'profile': 'user2_degree'
+#        }
+#        form = UpdateTutorForm(data=form_data)
+#        if(form.is_valid):
+#            form.save()
+#        self.assertTrue(form.is_valid())
+
     #Test Make Course 
     def test_make_course_form_save_POST(self):
         user = User.objects.get(username='tutor1')
