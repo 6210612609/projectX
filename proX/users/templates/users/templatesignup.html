@@ -52,19 +52,22 @@ div.l {
 <body>
   
 
-<!-- Navbar -->
-  <div class="w3-bar w3-large" style="height:8.5em;background-color:#74d1ff;color:white;">
-    <a href="{% url 'index' %}" style="text-decoration:none ;float: left; color: white;"><label class="w3-margin w3-jumbo"> Only Tutor</label></a>
-    <a href="{% url 'index' %}"> <img style="width:120px;height:70px ;float: left; margin-top: 2em;" src="{% static 'images/only.png' %}" alt="ninja"></a>
-    <br>
-    <br>
-    <br>
-    <br>
-    <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-25em;">  &#x1F3E0; Home</a>
-    <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-18.5em;">&#129299;Profile</a>
-    <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#128101;About</a>
-    <span class="w3-right-align" style="color: white;position: absolute;right: 0;padding-top: 10px;">&emsp;You are not login. <a href="{% url 'login' %}"><img style="width:25px;height:25px ;" src="{% static 'images/login.png' %}"></a>&emsp;</span>
-  </div>
+<!-- Navbar --> 
+  
+<div class="w3-bar w3-large" style="height:4em;background-color: #74d1ff;color: white;">
+  <div>
+ 
+  <a href="{% url 'index' %}"><img style="width:434px;height:69px;margin-top: 2px;margin-left: 2px;" src="{% static 'images/logo.png' %}"></a>
+  
+  
+ 
+  <a href="{% url 'index' %}" class=" w3-button   w3-hover-white">  &#x1F3E0; Home</a>
+  <span style="color: white;position: absolute;right: 0;margin-top: 20px;">&emsp;You are not login. <a href="{% url 'login' %}"><img style="width:25px;height:25px;" src="{% static 'images/login.png' %}"></a>&emsp;</span>
+  <a href="{% url 'login' %}" class="w3-button  w3-hover-white">&#129299;Profile</a> 
+  
+  <a href="{% url 'about' %}" class="w3-button  w3-hover-white">&#128101;About</a>
+</div>
+</div>
   {% block body %}
   {% endblock %}
 
