@@ -1,9 +1,15 @@
-{% extends "main/layout.html" %}
+{% extends "main/admin_layout.html" %}
 
 {% block profile %}
-<a href="{% url 't_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+<style>
+     div.box-1 {
+        border: dashed;
+        margin-left: 750px;
+        margin-right: 750px;
+        border-radius: 15px ;
+     }
+</style>
 {% endblock %}
-
 
 
 
@@ -11,12 +17,20 @@
 
 {% block content %}
 <br>
-<h1 style="margin-left:0.5em;"><b> Admin Home &#x1F527; </b></h1><br>
-<h3 style="margin-left:1.5em;font-size:34px;">Tutor List </h3>
+
 <br>
+<h1 style=" text-align: center; "><b> Admin Home &#x1F527; </b></h1><br>
+<div class ="box-1">
+        <br>
+        <h3 style=" font-size:34px;font-weight: bold; text-align: center; ">Tutor List </h3>
+        <br>
+<div style="text-align: center;">
 {% for t in tutor %}
-        <a style="margin-left:2em;font-size:28px;text-decoration:none;" href="{% url 'list_comment' t.pk %}" > - {{ t.user.first_name }} {{ t.user.last_name }}</a><br> 
+        <a style="font-size:28px;text-decoration:none; color: #74d1ff;" href="{% url 'list_comment' t.pk %}" >  &#127891; {{ t.user.first_name }}  {{ t.user.last_name }} ({{ t.user.nick_Name }}) </a><br> 
 {% endfor %}
+<br>
+</div>
+</div>
 
 
 {% endblock %}
