@@ -1,33 +1,77 @@
 {% extends "main/layout.html" %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-
-
-
-{% block body %}
-<div style="margin-top: 5em;">
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-      <h2 class="active w3-margin"> YOU ARE NOT LOGGED IN </h2>
-
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
   
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="static/images/only.png" id="icon" alt="User Icon" />
-      </div>
-  
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+{% block profile %}
+<a href="{% url 's_profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-18.5em;">&#129299;Profile</a>
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+
+
+
+{% block content %}
     
-      <form>
-        <a href="{%  url 'login' %}"><input type="button" class="fadeIn fourth" value="Log in" style="margin-bottom:1em;"></a>
-        <a href="{% url 'register' %}"><input type="button" class="fadeIn fourth" value="Register"></a>
-        
-      </form>
-      
-      
-  
-    </div>
-  </div>
-</div>
+    
+    <br>
+    <form action="{% url 'index' %}" method = "POST" >
+        {%csrf_token%}
+      <input style="margin-left:3em;width:400px;" type="text" placeholder="Search course..." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
 
+
+    <br>
+    {%if check_search == True %}
+        <h3 style="color:black;margin-left:2em;">Search result for : {{ search }}</h3>
+    {%else%}
+        <h3 style="color:black;margin-left:2em;"> Courses you have not applied.</h3>
+    {%endif%}
+    <br>
+    
+    
+    <table style="margin-left:15%; font-size:18px; ">
+        <tr height=40px;>
+            <th style="text-align:center;background-color:#dddddd;" width=100px;>Course ID</th>
+            <th style="background-color:#dddddd;text-align: center;" width=180px;>Course Name</th>
+            <th style="background-color:#dddddd;text-align: center;" width=400px;>Course Detail</th>
+            <th style="background-color:#dddddd;text-align: center;" width=180px;>Course Owner</th>
+            <th style="background-color:#dddddd;text-align: center;" width=80px;>Price</th>
+        </tr>
+           
+            {% for course in courselist %}
+
+            <tr height=80px;>
+                <td style="text-align:center;text-align: center;">{{course.id}}</td>
+                <td style="text-align: center;"><a style="text-decoration:none;" href="{% url 'course_detail' course.id %}">{{course.name}}</a></td>
+                <td>{{course.detail}}</td>
+                <td style="text-align: center;">{{course.owner}}</td>
+                <td style="text-align: center;">{{course.price}}</td>
+                
+            </tr>
+            {% endfor %}
+    </table>
+
+{% endblock %}
+{% block body %}
+<br>
+<br>
 
 {% endblock %}

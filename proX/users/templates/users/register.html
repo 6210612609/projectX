@@ -7,36 +7,19 @@
 </head>
 
 <html>
-<style>
-</style>
 <body>
   {% block body %}
   
-  <div style="margin-top:3% ;">
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-      <h1 class="active w3-margin"> Select your roles </h1>
-
-  
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="{% static 'images/only.png'%}" id="icon" alt="User Icon" />
-      </div>
+  <br><br><br><br>
+      <h3 style="text-align: center;"> Which account do you want to register ?</h3>
+      <br><br>
   
     
-
-        <a href="{% url 'tutor_register' %}"><input type="button" class="fadeIn fourth" value="Tutors" style="margin-bottom:1em;"></a>
-        <a href="{% url 'student_register' %}"><input type="button" class="fadeIn fourth" value="Student"></a>
-        
+      <div style="text-align: center;">
+        <a href="{% url 'tutor_register' %}"><input type="button" value="Tutors" ></a>
+        <a href="{% url 'student_register' %}"><input type="button" value="Student"></a>
+      </div>  
       
-      
-      
-  
-    </div>
-  </div>
-  </div>
-
   {% endblock %}
 
 </body>
