@@ -19,23 +19,19 @@
     
 <div style="text-align: center;"> 
 <br>
-<h1 style="font-size:50px;">Login</h1>
-<br>
-<img style="width:240px;height:240px;" src="{% static 'images/ninja.jpg' %}">
-<br>
-<br>
+
+<img style="width:300px;height:180px;margin-top: -1.5em;" src="{% static 'images/only.png' %}">
+
 <form action="{% url 'login' %}" method = "POST" class="form-group">
     {%csrf_token%}
-    
-    
     <input type="text" style="margin:20px;width:320px;" id="form.username" placeholder="Username" name="username"><br>
     <input type="password" style="width:320px;" id="form.password" placeholder="Password" name="password"><br>
     
     <br>
     <input type="submit" style="margin: 3px;" class="w3-bar-item w3-button w3-hide-small w3-padding-large" value="Sign in">
   </form>
-   <br>
-   <span>Don't have an account? Create One <a href="{% url 'register' %}" style="color: blue;">Here</span>
+    <br>
+   <span>Don't have account ?  please ,<a href="{% url 'register' %}" style="color: #52b4e6;text-decoration: none;"> click here</span>
 </div>
 </body>
 {% endblock %}

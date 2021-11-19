@@ -1,12 +1,13 @@
-{% extends "main/layout.html" %}
+{% extends "main/admin_layout.html" %}
 {% load static %}
 {% block profile %}
-<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"style="margin-left:-11.5em;">&#129299;Profile</a>
+
 {% endblock %}
 
 {% block content %}
 
 <style>
+    p.dashed {border-style: dashed;}
     h1{
         width: 100px;
         position: relative;
@@ -36,22 +37,36 @@
         border: 2px solid #492212;
         margin-bottom: 1px;
         border-radius: 7px ;
+        style=text-align: center;
     }
+    div.pic {
+
+        margin-top: -5px;
+        margin-left: 50px;
+        width: 255px;
+        padding: 0px;
+        border: 2px solid #0e1b22;
+        margin-bottom: -30px;
+        border-radius: 15px ;
+
+    }
+    
 
 </style>
-
-
-<div style="margin-left: 2%; font-size: x-large;" >
+<br>
+<div style="margin-top: 2%;margin-left: 2%;  font-size:32px;" >
+<p class="dashed" style="text-align: left;border: 2px solid black;margin: 20px;padding: 20px;color: white;background-color: #56baed">
+Tutor Profile<br>
 Full Name : {{object.user}}<br>
-NickName : {{object.user.nick_Name}}<br>
+Nickname : {{object.user.nick_Name}}<br>
 Age : {{object.user.age}}<br>
 Profile : {{object.user.profile}}<br>
-Average Star :  <div style="margin-left: 155px; margin-top: -27px;"><h1><div style= "width:calc(20% * {{ avgstar }})"></div>
+Average Star :  <div style="margin-left: 250px; margin-top: -72px;"><h1><div style= "width:calc(20% * {{ avgstar }})"></div>
                     <img src = "{% static 'images/stars.png' %}"  title = "{{avgstar}}"><br></div>            
+</p>
 
 
-
-<p style ="font-weight: bold; font-size: larger;" >Reviews:</p>
+<p style ="margin-left: 20px;font-weight: bold; font-size: larger;" ><u>Reviews :</u></p>
 <div style="font-size: large ; margin-left: 20px;">
 
     {% for review in reviews %}
@@ -60,12 +75,11 @@ Average Star :  <div style="margin-left: 155px; margin-top: -27px;"><h1><div sty
     {{review.comment}} <br>
     <div style="margin-left: 0px; margin-top: -20px;"><h1><div style= "width:calc(20% * {{ review.star }})"></div>
     <img src = "{% static 'images/stars.png' %}"  title = "{{review.star}}"> </div><br>
-    
-    
-    <a  style="color: #ffffff; background-color: tomato; border: #dddddd; " class="btn btn-primary btn-sm w3-large "href="{% url 'delete_review' object.user.id review.id %}">Delete This Comment!</a><br>
-{% endfor %}
-</div>
-
+    <a  style="color: #ffffff; background-color: #FF6347; border: #dddddd; " class="btn btn-primary btn-sm w3-large "href="{% url 'delete_review' object.user.id review.id %}">Delete This Comment!</a><br>
+    <hr>
+    <br>
+    {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
