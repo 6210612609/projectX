@@ -32,24 +32,20 @@ div.c {
   
   <div class="w3-bar w3-large" style="height:4em;background-color: #74d1ff;color: white;">
     <div>
-   
-    <a href="{% url 'index' %}"><img style="width:434px;height:69px;margin-top: 2px;margin-left: 2px;" src="{% static 'images/logo.png' %}"></a>
+      <a href="{% url 'index' %}"><img style="width:434px;height:69px;margin-top: 2px;margin-left: 2px;" src="{% static 'images/logo.png' %}"></a>
+      <a href="{% url 'index' %}" class=" w3-button   w3-hover-white">  &#x1F3E0; Home</a>
     
-    
-   
-    <a href="{% url 'index' %}" class=" w3-button   w3-hover-white">  &#x1F3E0; Home</a>
-    
-    {% if request.user.is_authenticated %}
-      <span style="color:white;position: absolute;right: 0;margin-top: 20px;">&emsp;Welcome, {{request.user.nick_Name}}&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>&emsp;</span>
+      {% if request.user.is_authenticated %}
+        <span style="color:white;position: absolute;right: 0;margin-top: 20px;">&emsp;Welcome, {{request.user.nick_Name}}&emsp;<a href="{% url 'logout' %}"><img style="width:25px;height:25px ;" src="{% static 'images/logout.png' %}"></a>&emsp;</span>
       {% block profile %}
       {% endblock %}
-    {%else%}
-    <span style="color: white;position: absolute;right: 0;margin-top: 20px;">&emsp;You are not login. <a href="{% url 'login' %}"><img style="width:25px;height:25px ;" src="{% static 'images/login.png' %}"></a>&emsp;</span>
-    <a href="{% url 'login' %}" class="w3-button  w3-hover-white">&#129299;Profile</a> 
-    {%endif%}
+      {%else%}
+        <span style="color: white;position: absolute;right: 0;margin-top: 20px;">&emsp;You are not login. <a href="{% url 'login' %}"><img style="width:25px;height:25px ;" src="{% static 'images/login.png' %}"></a>&emsp;</span>
+        <a href="{% url 'login' %}" class="w3-button  w3-hover-white">&#129299;Profile</a> 
+      {%endif%}
     
-    <a href="{% url 'about' %}" class="w3-button  w3-hover-white">&#128101;About</a>
-  </div>
+      <a href="{% url 'about' %}" class="w3-button  w3-hover-white">&#128101;About</a>
+    </div>
   </div>
 
   {% block content %}
